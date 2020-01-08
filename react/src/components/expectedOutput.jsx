@@ -29,6 +29,8 @@ class ExpectedOutput extends Component {
             onChangeType={onChangeType}
           />
           <InputText
+            className="input-fix-small"
+            autocomplete="off"
             placeholder={
               output.type === "Status Code" ? "Status Code" : output.key
             }
@@ -41,6 +43,8 @@ class ExpectedOutput extends Component {
           />
           =
           <InputText
+            className="input-fix-big"
+            autocomplete="off"
             placeholder={output.value}
             onChange={onInputChange}
             elementId={output.id}

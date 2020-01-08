@@ -28,7 +28,10 @@ class Parameter extends Component {
           testId={testId}
           onChangeType={onChangeType}
         />
+
         <InputText
+          className="input-fix-small"
+          autocomplete="off"
           placeholder={param.type === "Body" ? "N/A" : param.key}
           disabled={param.type === "Body" ? "disabled" : undefined}
           onChange={onInputChange}
@@ -38,7 +41,9 @@ class Parameter extends Component {
           targetElement="parameters"
         />
         =
-        <InputText
+      <InputText
+          className="input-fix-big"
+          autocomplete="off"
           placeholder={param.value}
           onChange={onInputChange}
           password={param.type === "BasicAuth" ? true : undefined}
@@ -47,6 +52,7 @@ class Parameter extends Component {
           targetAttribute="value"
           targetElement="parameters"
         />
+
       </div>
     );
   }

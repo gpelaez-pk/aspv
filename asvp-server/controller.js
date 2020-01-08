@@ -87,7 +87,7 @@ router.get("/run", (req, res) => {
           return res.status(200).json({
             message: "Tests completed"
           })
-          
+
         }
       );
     } catch (err) {
@@ -107,7 +107,7 @@ router.get("/run", (req, res) => {
 //  return the Jenkinsfile's text
 router.get("/jenkins", (req, res) => {
   console.log(" GET /jenkins");
-  fs.readFile("./default/Jenkinsfile", "utf8", function(err, file) {
+  fs.readFile("./default/Jenkinsfile", "utf8", function (err, file) {
     if (err) {
       console.log(err);
     }
@@ -573,7 +573,7 @@ router.post("/generate", (req, res) => {
     fs.writeFileSync(
       `${__dirname}/output/${id}/features/test.feature`,
       outputTests,
-      function(err, file) {
+      function (err, file) {
         if (err) {
           console.log(err);
           return res.status(500).json({
@@ -589,7 +589,7 @@ router.post("/generate", (req, res) => {
     console.log(
       `Writing --> Proxy URL @ ./output/${id}/features/support/init.js`
     );
-    fs.readFile(__dirname + "/default/default_init.js", "utf8", function(
+    fs.readFile(__dirname + "/default/default_init.js", "utf8", function (
       err,
       file
     ) {
@@ -604,7 +604,7 @@ router.post("/generate", (req, res) => {
       fs.writeFileSync(
         `${__dirname}/output/${id}/features/support/init.js`,
         inputData,
-        function(err) {
+        function (err) {
           if (err) {
             console.log(err);
           }

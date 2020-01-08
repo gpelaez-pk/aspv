@@ -8,7 +8,7 @@ var options = {
     scenarioTimestamp: true,
     launchReport: true,
     metadata: {
-        "CucumberVersion":"4.2.1",
+        "CucumberVersion": "4.2.1",
         "Input": "report.json",
         "Parallel": "Scenarios",
         "Output": "report.html",

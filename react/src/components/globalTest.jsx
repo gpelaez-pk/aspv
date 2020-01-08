@@ -20,86 +20,95 @@ class GlobalTest extends Component {
 
     return (
       <div className="test">
-        <div>
-          <label>Endpoint</label>
+
+        <fieldset className="fieldsetStyle adjustedPlaceHolder">
+          <legend> {" Endpoint "} </legend>
           <InputText
             placeholder="/url"
+            autocomplete="off"
             targetAttribute="endpoint"
             elementId={test.id}
             onChange={this.props.onInputChange}
             testId={test.id}
             targetElement="metadata"
           />
-        </div>
-        <div>
-          <label>Method</label>
+        </fieldset>
+
+        <fieldset className="fieldsetStyle adjustedPlaceHolder">
+          <legend> {" Method "} </legend>
           <InputText
             placeholder="GET"
+            autocomplete="off"
             targetAttribute="method"
             elementId={test.id}
             onChange={this.props.onInputChange}
             testId={test.id}
             targetElement="metadata"
           />
-        </div>
-        <div className="test-element-div">
-          <ul>
-            <TransitionGroup>
-              {test.parameters.map(param => (
-                <CSSTransition
-                  timeout={500}
-                  classNames="test-element"
-                  key={param.id}
-                >
-                  <li key={param.id}>
-                    <Parameter
-                      key={param.id}
-                      testId={test.id}
-                      onRemoveElement={this.props.onRemoveElement}
-                      onChangeType={this.props.onChangeType}
-                      param={param}
-                      onInputChange={this.props.onInputChange}
-                    />
-                  </li>
-                </CSSTransition>
-              ))}
-            </TransitionGroup>
-          </ul>
-          <AddElementButton
-            testId={test.id}
-            label="Parameter"
-            onAddElement={this.props.onAddParameterElement}
-          />
-        </div>
-        <div className="test-element-div">
-          <ul>
-            <TransitionGroup>
-              {test.outputs.map(output => (
-                <CSSTransition
-                  timeout={500}
-                  classNames="test-element"
-                  key={output.id}
-                >
-                  <li key={output.id}>
-                    <ExpectedOutput
-                      key={output.id}
-                      testId={test.id}
-                      onRemoveElement={this.props.onRemoveElement}
-                      onChangeType={this.props.onChangeType}
-                      output={output}
-                      onInputChange={this.props.onInputChange}
-                    />
-                  </li>
-                </CSSTransition>
-              ))}
-            </TransitionGroup>
-          </ul>
-          <AddElementButton
-            testId={test.id}
-            label="Output"
-            onAddElement={this.props.onAddOutputElement}
-          />
-        </div>
+        </fieldset>
+
+        <fieldset className="fieldsetStyle maxPlaceHolder">
+          <legend> {" Parameters "} </legend>
+          <div className="test-element-div">
+            <ul>
+              <TransitionGroup>
+                {test.parameters.map(param => (
+                  <CSSTransition
+                    timeout={500}
+                    classNames="test-element"
+                    key={param.id}
+                  >
+                    <li key={param.id}>
+                      <Parameter
+                        key={param.id}
+                        testId={test.id}
+                        onRemoveElement={this.props.onRemoveElement}
+                        onChangeType={this.props.onChangeType}
+                        param={param}
+                        onInputChange={this.props.onInputChange}
+                      />
+                    </li>
+                  </CSSTransition>
+                ))}
+              </TransitionGroup>
+            </ul>
+            <AddElementButton
+              testId={test.id}
+              label="Parameter"
+              onAddElement={this.props.onAddParameterElement}
+            />
+          </div>
+          <div className="test-element-div">
+            <ul>
+              <TransitionGroup>
+                {test.outputs.map(output => (
+                  <CSSTransition
+                    timeout={500}
+                    classNames="test-element"
+                    key={output.id}
+                  >
+                    <li key={output.id}>
+                      <ExpectedOutput
+                        key={output.id}
+                        testId={test.id}
+                        onRemoveElement={this.props.onRemoveElement}
+                        onChangeType={this.props.onChangeType}
+                        output={output}
+                        onInputChange={this.props.onInputChange}
+                      />
+                    </li>
+                  </CSSTransition>
+                ))}
+              </TransitionGroup>
+            </ul>
+            <AddElementButton
+              testId={test.id}
+              label="Output"
+              onAddElement={this.props.onAddOutputElement}
+            />
+          </div>
+        </fieldset>
+
       </div>
     );
   }

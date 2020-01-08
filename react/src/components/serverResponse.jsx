@@ -11,7 +11,7 @@ class ServerResponse extends Component {
         className={`server-response ${error ? "server-response-error" : ""}`}
       >
         <div>
-          Response Code
+          Response Code <br />
           <label
             style={
               code >= 300

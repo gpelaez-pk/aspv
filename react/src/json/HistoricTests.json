@@ -1,0 +1,166 @@
+{
+	"Historic": [
+		{
+			"id": "1",
+			"proxyURL": "rcpierz-eval-test.apigee.net/bdd-security",
+			"userID": "rpierz",
+			"endpoint": "/verifyapikey",
+			"method": "GET",
+			"timeStamp": "1577618416",
+			"globalParameters": [
+				{
+					"type": "query",
+					"key": "Key for query",
+					"value": "Value for query"
+				},
+				{
+					"type": "header",
+					"key": "Key for header",
+					"value": "Value for header"
+				},
+				{
+					"type": "form",
+					"key": "Key for form",
+					"value": "Value for form"
+				}
+			],
+			"globalOutput": [
+				{
+					"type": "Status Code",
+					"key": "Key for status code",
+					"value": "200"
+				},
+				{
+					"type": "header",
+					"key": "Key for header",
+					"value": "Value for header"
+				},
+				{
+					"type": "body-path",
+					"key": "Key for body-path",
+					"value": "Value for body-path"
+				}
+			],
+			"tests": [
+				{
+					"testName": "Verify Valid API Key",
+					"endpoint": "/verifyapikey",
+					"method": "GET",
+					"globalParameters": [
+						{
+							"type": "query",
+							"key": "apikey",
+							"value": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd"
+						}
+					],
+					"globalOutput": [
+						{
+							"type": "Status Code",
+							"key": "",
+							"value": "200"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "2",
+			"proxyURL": "rcpierz-eval-test.apigee.net/bdd-security",
+			"userID": "rpierz",
+			"endpoint": "/verifyapikey",
+			"method": "GET",
+			"globalParameters": [
+				{
+					"type": "query",
+					"key": "Key for query",
+					"value": "Value for query"
+				}
+			],
+			"globalOutput": [
+				{
+					"type": "Status Code",
+					"key": "Key for status code",
+					"value": "200"
+				},
+				{
+					"type": "body-path",
+					"key": "Key for body-path",
+					"value": "Value for body-path"
+				}
+			],
+			"tests": [
+				{
+					"testName": "Verify Valid API Key",
+					"endpoint": "/verifyapikey",
+					"method": "GET",
+					"globalParameters": [
+						{
+							"type": "query",
+							"key": "apikey",
+							"value": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd"
+						}
+					],
+					"globalOutput": [
+						{
+							"type": "Status Code",
+							"key": "",
+							"value": "200"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "3",
+			"proxyURL": "rcpierz-eval-test.apigee.net/bdd-security",
+			"userID": "rpierz",
+			"endpoint": "/verifyapikey",
+			"method": "GET",
+			"globalParameters": [
+				{
+					"type": "query",
+					"key": "Key for query",
+					"value": "Value for query"
+				},
+				{
+					"type": "form",
+					"key": "Key for form",
+					"value": "Value for form"
+				}
+			],
+			"globalOutput": [
+				{
+					"type": "Status Code",
+					"key": "Key for status code",
+					"value": "200"
+				},
+				{
+					"type": "header",
+					"key": "Key for header",
+					"value": "Value for header"
+				}
+			],
+			"tests": [
+				{
+					"testName": "Verify Valid API Key",
+					"endpoint": "/verifyapikey",
+					"method": "GET",
+					"globalParameters": [
+						{
+							"type": "query",
+							"key": "apikey",
+							"value": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd"
+						}
+					],
+					"globalOutput": [
+						{
+							"type": "Status Code",
+							"key": "",
+							"value": "200"
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -6,6 +6,7 @@ class InputText extends Component {
     const {
       placeholder,
       disabled,
+      autocomplete,
       testId,
       elementId,
       targetAttribute,
@@ -18,7 +19,9 @@ class InputText extends Component {
         className={this.props.className || "input-text"}
         type={this.props.password === true ? "password" : "text"}
         placeholder={placeholder}
+        defaultValue={this.props.defaultValue || ''}
         disabled={disabled}
+        autoComplete={autocomplete}
         onChange={event => {
           onChange(event, testId, targetElement, elementId);
         }}

@@ -13,7 +13,8 @@
   justify-content: center;
   justify-content: space-between !important;
   z-index: 2000;
-  background: linear-gradient(to right, #007bff 0%, #007bff 95%, #0022ff 100%);
+  background: cadetblue;
+  /*   linear-gradient(to right, #007bff 0%, #007bff 95%, #0022ff 100%); */
 }
 
 .sidebar-upper {
@@ -38,6 +39,7 @@
   margin-top: 10%;
   width: 150px;
   text-align: center;
+  font-size: smaller;
 }
 
 .server-response-error {
@@ -58,15 +60,18 @@
   animation-name: flash-error;
   animation-duration: 250ms;
 }
+
 @keyframes flash-error {
   0% {
     background-color: #880000;
     color: white;
   }
+
   50% {
     background-color: #ff8888;
     color: black;
   }
+
   100% {
     background-color: #880000;
     color: white;
@@ -87,7 +92,7 @@
 
 /*        MAIN SECTION        */
 .main-content {
-  margin-left: 135px;
+  margin-left: 180px;
 }
 
 /*      MAIN HEADER           */
@@ -100,7 +105,7 @@
   border-radius: 0 0 10px 0;
   padding: 20px 30px 0px 0px;
   color: white;
-  font: 20px "Palatino Linotype";
+  font: 400 14px/22px Google Sans, sans-serif;
   text-align: right;
   vertical-align: text-bottom;
 }
@@ -143,22 +148,33 @@
   padding: 10px;
   top: -10px;
 }
+
 .test {
   padding: 10px;
-  font-weight: bold;
-  margin-bottom: 25px;
-  padding-left: 20px;
+  /* font-weight: bold; */
+  /* margin-bottom: 25px; */
+  padding-bottom: 20px;
+  /* padding-left: 20px; */
+}
+
+.test:after {
+  clear: both;
+  content: "";
+  display: block;
 }
 
 .test h2 {
   font-weight: bold;
 }
+
 .test label {
   padding-top: 5px;
   margin-bottom: 2px;
 }
+
 .test input {
   margin-left: 10px;
+  margin-right: 10px;
 }
 
 /*  Test Animation  */
@@ -166,14 +182,17 @@
   height: 0px;
   overflow: hidden;
 }
+
 .test-enter-active {
   height: 356px;
   overflow: hidden;
   transition: height 300ms cubic-bezier(0.55, 0.19, 0.23, 0.89);
 }
+
 .test-exit {
   height: 356px;
 }
+
 .test-exit-active {
   height: 0px;
   overflow: hidden;
@@ -184,10 +203,12 @@
 .test-element-div {
   border-radius: 10px;
   margin-top: 20px;
+  /* margin-left: 50px; */
 }
+
 .test-element {
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   align-items: center;
 }
 
@@ -197,17 +218,20 @@
   overflow: hidden;
   background-color: rgba(0, 0, 0, 0);
 }
+
 .test-element-enter-active {
   overflow: hidden;
   height: 47px;
   background-color: rgba(80, 175, 80, 0.5);
   transition: all 300ms ease-in;
 }
+
 .test-element-exit {
   height: 47px;
   overflow: hidden;
   background-color: rgba(175, 80, 80, 0.5);
 }
+
 .test-element-exit-active {
   overflow: hidden;
   height: 0px;
@@ -233,16 +257,18 @@
 
 /* Input Text component */
 .input-text {
-  width: 40%;
+  /* width: 40%; */
+  min-width: 480px;
 }
 
 .input-text-Name {
-  width: 20%;
+  width: 100%;
   font-size: 20px;
 }
 
 .input-text-UserID {
-  width: 20%;
+  /* width: 20%; */
+  min-width: 480px;
 }
 
 /* RemoveElement component */
@@ -260,8 +286,8 @@
 
 /* AddElement Component */
 .add-element-button {
-  margin-left: 2%;
-  border-radius: 15px !important;
+  margin-left: 5px;
+  /* border-radius: 15px !important; */
 }
 
 .add-element-button-Test {
@@ -269,14 +295,16 @@
   border-color: #007bff;
   padding: 0.5rem;
   border-radius: 0.2rem;
-  margin-left: 5%;
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   color: #fff;
 }
 
 /* List CSS */
 ul {
   list-style: none;
-  padding-left: 2%;
+  padding-left: 0px;
 }
 
 li {

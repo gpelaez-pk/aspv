@@ -1,11 +1,20 @@
 import React, { Component } from "react";
+
 import Test from "./test";
 import AddElementButton from "./addElementButton";
 import InputText from "./inputText";
+import Sidebar from "./sidebar";
+import ViewTests from "./ViewTests"
+
 import axios from "axios";
 import GlobalTest from "./globalTest";
-import Sidebar from "./sidebar";
+
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { Tabs, Tab, TabPanel, TabList } from 'react-web-tabs';
+
+import 'react-web-tabs/dist/react-web-tabs.css';
+
+
 
 class Tests extends Component {
   url = "http://localhost:8000";
@@ -61,7 +70,10 @@ class Tests extends Component {
     ]
   };
 
-  getMaxId = function(array) {
+  loadedTestData = [];
+
+
+  getMaxId = function (array) {
     let max = 0;
     for (var element in array) {
       if (array[element].id > max) max = array[element].id;
@@ -419,75 +431,112 @@ class Tests extends Component {
           />
         </div>
         <div className="main-content">
-          <div className="main-header">ensure your proxies are protected</div>
-          <div className="general-config-div">
-            <div>
-              {"ProxyURL: "}
-              <InputText
-                type="text"
-                targetElement="ProxyURL"
-                targetAttribute="ProxyURL"
-                placeholder={this.state.ProxyURL}
-                onChange={this.handleInputChange}
-              />
-              {" UserID: "}
-              <InputText
-                type="text"
-                className="input-text-UserID"
-                targetElement="UserID"
-                placeholder={this.state.UserID}
-                onChange={this.handleInputChange}
-              />
-            </div>
-          </div>
+          <div className="tabStyles">
+            <Tabs
+              defaultTab="one"
+            >
+              <TabList>
+                <Tab tabFor="one">General Data</Tab>
+                <Tab tabFor="two">Test Data</Tab>
+                <Tab tabFor="three">Historic of Data</Tab>
+              </TabList>
 
-          <div className="global-test-div">
-            <h1
-              style={{ textAlign: "right", height: "0", paddingRight: "10px" }}
-            >
-              Global
-            </h1>
-            <GlobalTest
-              key="0"
-              test={this.state.tests.filter(test => test.id === 0)[0]}
-              onRemoveElement={this.handleRemoveElement}
-              onInputChange={this.handleInputChange}
-              onAddParameterElement={this.handleAddParameter}
-              onAddOutputElement={this.handleAddOutput}
-              onChangeType={this.handleChangeType}
-            />
-          </div>
-          <div className="test-div">
-            <h1
-              style={{ textAlign: "right", height: "0", paddingRight: "10px" }}
-            >
-              Tests
-            </h1>
-            <TransitionGroup>
-              {this.state.tests
-                .filter(test => test.id !== 0)
-                .map(test => (
-                  <CSSTransition timeout={500} classNames="test" key={test.id}>
-                    <Test
-                      key={test.id}
-                      test={test}
+
+              <TabPanel tabId="one">
+
+                <div className="dataInputStyle">
+
+                  <fieldset className="fieldsetStyle">
+                    <legend> {"ProxyURL "} </legend>
+                    <InputText
+                      type="text"
+                      autocomplete="off"
+                      targetElement="ProxyURL"
+                      targetAttribute="ProxyURL"
+                      defaultValue={this.loadedTestData.ProxyURL}
+                      placeholder={this.state.ProxyURL}
+                      onChange={this.handleInputChange}
+                    />
+                  </fieldset>
+
+                  <div className="recommendationText">
+                    <sub>* make ensure your proxies are protected</sub>
+                  </div>
+
+                  <fieldset className="fieldsetStyle">
+                    <legend> {" UserID "} </legend>
+                    <InputText
+                      type="text"
+                      autocomplete="off"
+                      className="input-text-UserID"
+                      targetElement="UserID"
+                      placeholder={this.state.UserID}
+                      onChange={this.handleInputChange}
+                    />
+                  </fieldset>
+
+                  <hr />
+
+                  <fieldset className="fieldsetStyle bigPlaceHolder">
+                    <legend> {" Global Variables "} </legend>
+                    <GlobalTest
+                      key="0"
+                      test={this.state.tests.filter(test => test.id === 0)[0]}
                       onRemoveElement={this.handleRemoveElement}
                       onInputChange={this.handleInputChange}
                       onAddParameterElement={this.handleAddParameter}
                       onAddOutputElement={this.handleAddOutput}
                       onChangeType={this.handleChangeType}
                     />
-                  </CSSTransition>
-                ))}
-            </TransitionGroup>
+                  </fieldset>
+                </div>
+
+
+              </TabPanel>
+
+              <TabPanel tabId="two">
+
+
+                <fieldset className="fieldsetStyle testPlaceHolder">
+                  <legend> {" Tests "} </legend>
+                  <TransitionGroup>
+                    {this.state.tests
+                      .filter(test => test.id !== 0)
+                      .map(test => (
+                        <CSSTransition timeout={500} classNames="test" key={test.id}>
+                          <Test
+                            key={test.id}
+                            test={test}
+                            onRemoveElement={this.handleRemoveElement}
+                            onInputChange={this.handleInputChange}
+                            onAddParameterElement={this.handleAddParameter}
+                            onAddOutputElement={this.handleAddOutput}
+                            onChangeType={this.handleChangeType}
+                          />
+                        </CSSTransition>
+                      ))}
+                  </TransitionGroup>
+                </fieldset>
+
+
+
+                <AddElementButton
+                  type="add-element-button-Test"
+                  onAddElement={this.handleAddTest}
+                  label="Test"
+                  testId={null}
+                />
+              </TabPanel>
+              <TabPanel tabId="three">
+
+                <ViewTests />
+
+              </TabPanel>
+            </Tabs>
           </div>
-          <AddElementButton
-            type="add-element-button-Test"
-            onAddElement={this.handleAddTest}
-            label="Test"
-            testId={null}
-          />
-          <div className="main-footer"></div>
+
+
+
         </div>
       </div>
     );

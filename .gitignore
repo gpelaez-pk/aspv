@@ -2,5 +2,5 @@ node_modules
 init.js
 test.feature
 report.html
-report.json
+report1.json
 apickli-gherkin.js
