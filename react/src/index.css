@@ -1,8 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -61,13 +59,13 @@ input:focus::placeholder {
 }
 
 .recommendationText {
-  padding-left: 250px;
   margin-top: -5px;
+  max-width: 500px;
+  text-align: right;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
 }
 
 .tabStyles {
@@ -88,6 +86,8 @@ input {
   border: 0px solid;
   height: 20px;
   width: 160px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+  font-size: 0.9rem !important;
 }
 
 fieldset {
@@ -114,7 +114,7 @@ fieldset {
 }
 
 .testPlaceHolder {
-  max-width: 50%;
+  max-width: 65%;
   margin-left: 30px;
   margin-top: 30px;
 }
@@ -142,13 +142,12 @@ fieldset {
 
 legend {
   color: #39c !important;
-  font-style: italic !important;
   padding-left: 12px !important;
   padding-right: 12px !important;
   display: block !important;
   width: unset !important;
   margin-bottom: .5rem !important;
-  font-size: 1rem !important;
+  font-size: 0.8rem !important;
   line-height: inherit !important;
   white-space: normal;
 }
@@ -239,7 +238,7 @@ legend {
   background-color: #33bdef;
   cursor: pointer;
   color: #ffffff !important;
-  font-family: Arial;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
   font-size: 15px;
   font-weight: bold;
   text-decoration: none;
@@ -254,7 +253,7 @@ legend {
   display: inline-block;
   cursor: pointer;
   color: #ffffff;
-  font-family: Arial;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
   font-size: 15px;
   font-weight: bold;
   padding: 6px 24px;
@@ -307,8 +306,9 @@ legend {
 }
 
 table {
-  font-family: arial, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
   border-collapse: collapse;
+  font-size: 0.9rem !important;
   width: 100%;
 }
 

@@ -7,6 +7,7 @@ import "../App.css";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 class GlobalTest extends Component {
+
   state = {
     show: false
   };
@@ -27,6 +28,7 @@ class GlobalTest extends Component {
             placeholder="/url"
             autocomplete="off"
             targetAttribute="endpoint"
+            defaultValue={this.props.itemEndpoint}
             elementId={test.id}
             onChange={this.props.onInputChange}
             testId={test.id}
@@ -40,6 +42,7 @@ class GlobalTest extends Component {
             placeholder="GET"
             autocomplete="off"
             targetAttribute="method"
+            defaultValue={this.props.itemMethod}
             elementId={test.id}
             onChange={this.props.onInputChange}
             testId={test.id}
@@ -70,6 +73,8 @@ class GlobalTest extends Component {
                     </li>
                   </CSSTransition>
                 ))}
+
+
               </TransitionGroup>
             </ul>
             <AddElementButton

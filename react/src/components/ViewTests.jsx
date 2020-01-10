@@ -4,25 +4,15 @@ import data from '../json/HistoricTests.json';
 
 class ViewTests extends Component {
 
-	constructor(props) {
-		super(props);
-		this.onLoadTest = this.onLoadTest.bind(this);
+
+	state = { text: "Load data" };
+
+	saveDataMethod(test) {
+		this.props.sendData(test);
 	}
-
-	onLoadTest() {
-
-		var loadedData = require('../json/HistoricTests.json');
-
-		var keys = Object.keys(loadedData);
-
-		var allEmps = keys.map((t) => loadedData[t].map((e) => (e)));
-
-		console.log(allEmps);
-
-	}
-
 
 	render() {
+
 		return (
 			<div>
 				<div className="tableStyle">
@@ -36,59 +26,65 @@ class ViewTests extends Component {
 								<th className="alignCenter">Action</th>
 							</tr>
 						</thead>
+						<tbody>
+							{
+								data.Historic.map((test) => {
+									return (
 
-						{
-							data.Historic.map((test) => {
-								return (
+										<tr key={test.id}>
+											<td>
+												{test.proxyURL}
+											</td>
+											<td className="alignCenter">
+												{test.userID}
+											</td>
+											<td className="alignCenter">
+												{Intl.DateTimeFormat('en-US', {
+													year: "numeric",
+													month: "short",
+													day: "2-digit",
+													hour: "numeric",
+													minute: "2-digit",
+													second: "2-digit"
+												}).format(test.timeStamp)}
+											</td>
+											<td className="alignCenter">
 
-									<tr>
-										<td>
-											{test.proxyURL}
-										</td>
-										<td className="alignCenter">
-											{test.userID}
-										</td>
-										<td className="alignCenter">
-											{Intl.DateTimeFormat('en-US', {
-												year: "numeric",
-												month: "short",
-												day: "2-digit",
-												hour: "numeric",
-												minute: "2-digit",
-												second: "2-digit"
-											}).format(test.timeStamp)}
-										</td>
-										<td className="alignCenter">
+												<table>
 
-											<table>
+													<tbody>
+														{test.tests.map((global) => {
+															return (
+																<tr key={global.key}>
+																	<td>{global.testName}</td>
+																</tr>
+															)
 
+														})}
 
-												{test.globalOutput.map((global) => {
-													return (
-														<tr>
-															<td>{global.key}</td>
-														</tr>
-													)
+													</tbody>
 
-												})}
-
-
-
-											</table>
+												</table>
 
 
-										</td>
+											</td>
 
-										<td className="alignCenter">
-											<button className="btn btn-primary btn-sm add-element-button asvpButton" onClick={this.onLoadTest} id={test.id}>
-												Load data
-											</button>
-										</td>
-									</tr>
+											<td className="alignCenter">
+												<button
+													className="btn btn-primary btn-sm add-element-button asvpButton"
+													onClick={() => {
+														this.saveDataMethod(test);
 
-								);
-							})
-						}
+													}}
+												>
+													{this.state.text}
+												</button>
+											</td>
+										</tr>
+									);
+								})
+							}
+						</tbody>
 					</table>
 				</div>
 

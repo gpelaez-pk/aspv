@@ -60,51 +60,109 @@
 							"value": "200"
 						}
 					]
-				}
-			]
-		},
-		{
-			"id": "2",
-			"proxyURL": "rcpierz-eval-test.apigee.net/bdd-security",
-			"userID": "rpierz",
-			"endpoint": "/verifyapikey",
-			"method": "GET",
-			"globalParameters": [
-				{
-					"type": "query",
-					"key": "Key for query",
-					"value": "Value for query"
-				}
-			],
-			"globalOutput": [
-				{
-					"type": "Status Code",
-					"key": "Key for status code",
-					"value": "200"
 				},
 				{
-					"type": "body-path",
-					"key": "Key for body-path",
-					"value": "Value for body-path"
-				}
-			],
-			"tests": [
-				{
-					"testName": "Verify Valid API Key",
-					"endpoint": "/verifyapikey",
-					"method": "GET",
+					"testName": "Another Valid API Key",
+					"endpoint": "",
+					"method": "",
 					"globalParameters": [
 						{
 							"type": "query",
-							"key": "apikey",
-							"value": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd"
+							"key": "apikey (Test1)",
+							"value": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd (Test1)"
 						}
 					],
 					"globalOutput": [
 						{
 							"type": "Status Code",
 							"key": "",
-							"value": "200"
+							"value": "200 (Test1)"
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "2",
+			"proxyURL": "rcpierz-eval-test.apigee.net/bdd-security (Test2)",
+			"userID": "rpierzTest2",
+			"endpoint": "/verifyapikey (Test2)",
+			"method": "GET (Test2)",
+			"timeStamp": "1577618416",
+			"globalParameters": [
+				{
+					"type": "query",
+					"key": "Key for query (Test2)",
+					"value": "Value for query (Test2)"
+				}
+			],
+			"globalOutput": [
+				{
+					"type": "Status Code",
+					"key": "Key for status code (Test2)",
+					"value": "200 (Test2)"
+				},
+				{
+					"type": "body-path",
+					"key": "Key for body-path (Test2)",
+					"value": "Value for body-path (Test2)"
+				}
+			],
+			"tests": [
+				{
+					"testName": "Verify Valid API Key (Test2)",
+					"endpoint": "",
+					"method": "",
+					"globalParameters": [
+						{
+							"type": "query",
+							"key": "apikey (Test2)",
+							"value": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd (Test2)"
+						}
+					],
+					"globalOutput": [
+						{
+							"type": "Status Code",
+							"key": "",
+							"value": "200 (Test2)"
+						}
+					]
+				},
+				{
+					"testName": "Another Test for record 2",
+					"endpoint": "",
+					"method": "",
+					"globalParameters": [
+						{
+							"type": "query",
+							"key": "apikey (Test2)",
+							"value": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd (Test2)"
+						}
+					],
+					"globalOutput": [
+						{
+							"type": "Status Code",
+							"key": "",
+							"value": "200 (Test2)"
+						}
+					]
+				},
+				{
+					"testName": "My other test (Test2)",
+					"endpoint": "",
+					"method": "",
+					"globalParameters": [
+						{
+							"type": "query",
+							"key": "apikey (Test2)",
+							"value": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd (Test2)"
+						}
+					],
+					"globalOutput": [
+						{
+							"type": "Status Code",
+							"key": "",
+							"value": "200 (Test2)"
 						}
 					]
 				}
@@ -112,51 +170,71 @@
 		},
 		{
 			"id": "3",
-			"proxyURL": "rcpierz-eval-test.apigee.net/bdd-security",
-			"userID": "rpierz",
-			"endpoint": "/verifyapikey",
-			"method": "GET",
+			"proxyURL": "rcpierz-eval-test.apigee.net/bdd-security (Test3)",
+			"userID": "rpierzTest3",
+			"endpoint": "/verifyapikey (Test3)",
+			"method": "GET (Test3)",
+			"timeStamp": "1577618416",
 			"globalParameters": [
 				{
 					"type": "query",
-					"key": "Key for query",
-					"value": "Value for query"
+					"key": "Key for query (Test3)",
+					"value": "Value for query (Test3)"
 				},
 				{
 					"type": "form",
-					"key": "Key for form",
-					"value": "Value for form"
+					"key": "Key for form (Test3)",
+					"value": "Value for form (Test3)"
 				}
 			],
 			"globalOutput": [
 				{
 					"type": "Status Code",
-					"key": "Key for status code",
-					"value": "200"
+					"key": "Key for status code (Test3)",
+					"value": "200 (Test3)"
 				},
 				{
 					"type": "header",
-					"key": "Key for header",
-					"value": "Value for header"
+					"key": "Key for header (Test3)",
+					"value": "Value for header (Test3)"
 				}
 			],
 			"tests": [
 				{
-					"testName": "Verify Valid API Key",
-					"endpoint": "/verifyapikey",
-					"method": "GET",
+					"testName": "Verify Valid API Key (Test3)",
+					"endpoint": "",
+					"method": "",
 					"globalParameters": [
 						{
 							"type": "query",
-							"key": "apikey",
-							"value": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd"
+							"key": "apikey (Test3)",
+							"value": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd (Test3)"
 						}
 					],
 					"globalOutput": [
 						{
 							"type": "Status Code",
 							"key": "",
-							"value": "200"
+							"value": "200 (Test3)"
+						}
+					]
+				},
+				{
+					"testName": "Invalid API Key (Test3)",
+					"endpoint": "",
+					"method": "",
+					"globalParameters": [
+						{
+							"type": "query",
+							"key": "apikey (Invalid3)",
+							"value": "abcdefghijklmnopqrstuvwxyz"
+						}
+					],
+					"globalOutput": [
+						{
+							"type": "Status Code",
+							"key": "",
+							"value": "200 (Test3)"
 						}
 					]
 				}

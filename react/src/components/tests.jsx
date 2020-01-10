@@ -17,6 +17,26 @@ import 'react-web-tabs/dist/react-web-tabs.css';
 
 
 class Tests extends Component {
+
+  constructor(props) {
+    super(props);
+    this.getData = this.getData.bind(this);
+  }
+
+  getData(val) {
+    this.setState({
+      newProxyURL: val.proxyURL,
+      newUserID: val.userID,
+      newEndPoint: val.endpoint,
+      newMethod: val.method,
+      newTests: val.tests
+    });
+
+    console.log(val);
+    console.log(val.tests);
+  }
+
+
   url = "http://localhost:8000";
 
   state = {
@@ -69,8 +89,6 @@ class Tests extends Component {
       }
     ]
   };
-
-  loadedTestData = [];
 
 
   getMaxId = function (array) {
@@ -453,7 +471,7 @@ class Tests extends Component {
                       autocomplete="off"
                       targetElement="ProxyURL"
                       targetAttribute="ProxyURL"
-                      defaultValue={this.loadedTestData.ProxyURL}
+                      defaultValue={this.state.newProxyURL}
                       placeholder={this.state.ProxyURL}
                       onChange={this.handleInputChange}
                     />
@@ -470,6 +488,7 @@ class Tests extends Component {
                       autocomplete="off"
                       className="input-text-UserID"
                       targetElement="UserID"
+                      defaultValue={this.state.newUserID}
                       placeholder={this.state.UserID}
                       onChange={this.handleInputChange}
                     />
@@ -481,6 +500,8 @@ class Tests extends Component {
                     <legend> {" Global Variables "} </legend>
                     <GlobalTest
                       key="0"
+                      itemEndpoint={this.state.newEndPoint}
+                      itemMethod={this.state.newMethod}
                       test={this.state.tests.filter(test => test.id === 0)[0]}
                       onRemoveElement={this.handleRemoveElement}
                       onInputChange={this.handleInputChange}
@@ -507,6 +528,7 @@ class Tests extends Component {
                           <Test
                             key={test.id}
                             test={test}
+                            itemTests={this.state.newTests}
                             onRemoveElement={this.handleRemoveElement}
                             onInputChange={this.handleInputChange}
                             onAddParameterElement={this.handleAddParameter}
@@ -529,7 +551,8 @@ class Tests extends Component {
               </TabPanel>
               <TabPanel tabId="three">
 
-                <ViewTests />
+                <ViewTests sendData={this.getData} />
+
 
               </TabPanel>
             </Tabs>
