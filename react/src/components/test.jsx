@@ -17,174 +17,24 @@ class Test extends Component {
     }
   }
 
-
   toggleModal = () => {
     this.setState({ show: !this.state.show });
   };
 
   render() {
+
     const { test } = this.props;
-
-    let loadedTests = 
-    this.props.itemTests !== undefined
-      ? this.props.itemTests
-      : (this.props.itemTests === '0')
-
-    console.log(loadedTests);
 
 
     return (
-      <div>
 
-      {
-        loadedTests ? loadedTests.map((d) => 
-        
-        <div className="test">
-      
-        <div className="leftSideTestData">
-
-          <RemoveElementButton
-            type="remove-element-button-Test"
-            label="Test"
-            onRemoveElement={this.toggleModal}
-            elementId={test.id}
-            elementType="test"
-          />
-
-        </div>
-
-        <div className="rightSideTestData">
-
-          <fieldset className="fieldsetStyle adjustedPlaceHolder">
-            <legend> {" Test Name "} </legend>
-
-            <InputText
-              className="input-text-Name"
-              placeholder="New Test"
-              autocomplete="off"
-              targetAttribute="name"
-              defaultValue={d.testName}
-              elementId={test.id}
-              onChange={this.props.onInputChange}
-              testId={test.id}
-              targetElement="metadata"
-            />
-          </fieldset>
-
-          <fieldset className="fieldsetStyle adjustedPlaceHolder">
-            <legend> {" Endpoint "} </legend>
-            <InputText
-              placeholder="/url"
-              autocomplete="off"
-              targetAttribute="endpoint"
-              defaultValue={d.endpoint}
-              elementId={test.id}
-              onChange={this.props.onInputChange}
-              testId={test.id}
-              targetElement="metadata"
-            />
-          </fieldset>
-
-          <fieldset className="fieldsetStyle adjustedPlaceHolder">
-            <legend> {" Method "} </legend>
-            <InputText
-              placeholder="GET"
-              autocomplete="off"
-              targetAttribute="method"
-              defaultValue={d.method}
-              elementId={test.id}
-              onChange={this.props.onInputChange}
-              testId={test.id}
-              targetElement="metadata"
-            />
-          </fieldset>
-
-          <fieldset className="fieldsetStyle maxPlaceHolder">
-            <legend> {" Parameters "} </legend>
-            <div className="test-element-div">
-                <ul>
-                <TransitionGroup>
-                  {test.parameters.map(param => (
-                    <CSSTransition
-                      timeout={500}
-                      classNames="test-element"
-                      key={param.id}
-                    >
-                      <li key={param.id}>
-                        <Parameter
-                          key={param.id}
-                          testId={test.id}
-                          onRemoveElement={this.props.onRemoveElement}
-                          onChangeType={this.props.onChangeType}
-                          param={param}
-                          onInputChange={this.props.onInputChange}
-                        />
-                      </li>
-                    </CSSTransition>
-                  ))}
-                </TransitionGroup>
-              </ul>
-              <AddElementButton
-                testId={test.id}
-                label="Parameter"
-                onAddElement={this.props.onAddParameterElement}
-              />
-            </div>
-
-            <div className="test-element-div">
-              <ul>
-                <TransitionGroup>
-                  {test.outputs.map(output => (
-                    <CSSTransition
-                      timeout={500}
-                      classNames="test-element"
-                      key={output.id}
-                    >
-                      <li key={output.id}>
-                        <ExpectedOutput
-                          key={output.id}
-                          testId={test.id}
-                          onRemoveElement={this.props.onRemoveElement}
-                          onChangeType={this.props.onChangeType}
-                          output={output}
-                          onInputChange={this.props.onInputChange}
-                        />
-                      </li>
-                    </CSSTransition>
-                  ))}
-                </TransitionGroup>
-              </ul>
-              <AddElementButton
-                testId={test.id}
-                label="Output"
-                onAddElement={this.props.onAddOutputElement}
-              />
-            </div>
-          </fieldset>
-
-        </div>
-
-        <Modal
-          test={test}
-          show={this.state.show}
-          toggleModal={this.toggleModal}
-          onRemoveElement={this.props.onRemoveElement}
-        >
-          <h2>Are you sure you want to delete {test.metadata.name}?</h2>
-        </Modal>
-
-
-      </div>
-
-      ) : 
-      
       <div className="test">
-      
+
         <div className="leftSideTestData">
 
           <RemoveElementButton
             type="remove-element-button-Test"
-            label="Test"
+            label={"Test"}
             onRemoveElement={this.toggleModal}
             elementId={test.id}
             elementType="test"
@@ -202,12 +52,12 @@ class Test extends Component {
               placeholder="New Test"
               autocomplete="off"
               targetAttribute="name"
-              defaultValue={this.props.itemTests}
               elementId={test.id}
               onChange={this.props.onInputChange}
               testId={test.id}
               targetElement="metadata"
             />
+
           </fieldset>
 
           <fieldset className="fieldsetStyle adjustedPlaceHolder">
@@ -239,7 +89,7 @@ class Test extends Component {
           <fieldset className="fieldsetStyle maxPlaceHolder">
             <legend> {" Parameters "} </legend>
             <div className="test-element-div">
-                <ul>
+              <ul>
                 <TransitionGroup>
                   {test.parameters.map(param => (
                     <CSSTransition
@@ -310,13 +160,8 @@ class Test extends Component {
           <h2>Are you sure you want to delete {test.metadata.name}?</h2>
         </Modal>
 
+      </div>
 
-      </div>
-        
-      }
-      </div>
-      
-      
     );
   }
 }

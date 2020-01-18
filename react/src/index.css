@@ -274,7 +274,7 @@ legend {
 
 .tableStyle {
   padding: 10px;
-  width: 90%;
+  width: 95%;
 }
 
 .fixedWidth {
@@ -311,6 +311,8 @@ table {
   border-collapse: collapse;
   font-size: 0.9rem !important;
   width: 100%;
+  border-top: 1px solid black;
+  margin-top: 10px;
 }
 
 td,
@@ -340,14 +342,60 @@ table tr td:last-child {
   border-right: 0;
 }
 
-table td:nth-child(4) {
-  background-color: #ffffff;
-}
-
 table tr:nth-child(even) {
   background-color: #dddddd;
 }
 
+.Collapsible table tr:nth-child(even) {
+  background-color: cadetblue !important;
+}
+
+table tr th.min-action-required {
+  min-width: 105px;
+}
+
+table tr th.min-user-required {
+  min-width: 110px;
+}
+
+table tr th.min-timestamp-required {
+  min-width: 220px;
+}
+
+.Collapsible span:after {
+  margin-left: 20px;
+  padding: 3px;
+  content: ' \25BE';
+  font-size: 18px;
+  display: inline-block;
+}
+
+.Collapsible span.is-open:after {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  transform: rotate(180deg) !important;
+  display: inline-block;
+  padding-top: 0px;
+}
+
+.Collapsible span {
+  color: #ffffff;
+  font-weight: 400;
+  text-shadow: 0px -1px 0px #5b6178;
+  font-size: 14px;
+  background-color: cadetblue;
+  background-size: 20px 20px;
+  background-repeat: no-repeat;
+  background-position: 2px;
+  padding: 5px;
+  border-radius: 5px 5px 5px;
+  border: 1px solid #007bff;
+  position: relative;
+}
+
+.Collapsible__trigger:hover {
+  cursor: pointer;
+}
 
 @media (max-width: 800px) {
 

@@ -39,8 +39,6 @@ export default class SocialLogin extends Component {
 	handleSocialLoginInvokeSuccess(res) {
 		const { callback, provider } = this.props
 
-		// console.log(res)  // Uncomment to check response coming from provider in log
-
 		const user = new SocialUser()
 		let userProfile
 		let token

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import Test from "./test";
 import AddElementButton from "./addElementButton";
 import InputText from "./inputText";
@@ -15,80 +14,132 @@ import { Tabs, Tab, TabPanel, TabList } from 'react-web-tabs';
 import 'react-web-tabs/dist/react-web-tabs.css';
 
 
-
 class Tests extends Component {
-
-  constructor(props) {
-    super(props);
-    this.getData = this.getData.bind(this);
-  }
-
-  getData(val) {
-    this.setState({
-      newProxyURL: val.proxyURL,
-      newUserID: val.userID,
-      newEndPoint: val.endpoint,
-      newMethod: val.method,
-      newTests: val.tests
-    });
-
-    console.log(val);
-    console.log(val.tests);
-  }
-
 
   url = "http://localhost:8000";
 
-  state = {
-    pending: false,
-    validationError: {
-      exist: false,
-      message: ""
-    },
-    httpStatus: {
-      error: false,
-      code: "",
-      message: "Server Response"
-    },
-    UserID: "",
-    ProxyURL: "(org)-(env).apigee.net/(basepath)",
-    tests: [
-      {
-        id: 0,
-        metadata: {
-          name: "Global",
-          endpoint: "",
-          method: ""
-        },
-        parameters: [],
-        outputs: []
+
+  constructor(props) {
+
+    super(props);
+
+    this.getData = this.getData.bind(this);
+
+    this.state = {
+      pending: false,
+      validationError: {
+        exist: false,
+        message: ""
       },
-      {
-        id: 1,
-        metadata: {
-          name: "New Test",
-          endpoint: "",
-          method: ""
+      httpStatus: {
+        error: false,
+        code: "",
+        message: "Server Response"
+      },
+      UserID: "",
+      newUserID: "",
+      ProxyURL: "(org)-(env).apigee.net/(basepath)",
+      newProxyURL: "",
+      tests: [
+        {
+          id: 0,
+          metadata: {
+            name: "Global",
+            endpoint: "",
+            method: ""
+          },
+          parameters: [],
+          outputs: []
         },
-        parameters: [
-          {
-            id: 1,
-            type: "Query",
-            key: "key",
-            value: "value"
-          }
-        ],
-        outputs: [
-          {
-            id: 1,
-            type: "Status Code",
-            key: "Status Code",
-            value: "200"
-          }
-        ]
-      }
-    ]
-  };
+        {
+          id: 1,
+          metadata: {
+            name: "New Test",
+            endpoint: "",
+            method: ""
+          },
+          parameters: [
+            {
+              id: 1,
+              type: "Query",
+              key: "key",
+              value: "value"
+            }
+          ],
+          outputs: [
+            {
+              id: 1,
+              type: "Status Code",
+              key: "Status Code",
+              value: "200"
+            }
+          ]
+        }
+      ]
+    };
+  }
+
+  getData(val) {
+
+    this.setState({
+      UserID: val.userID,
+      newUserID: val.userID,
+      ProxyURL: val.global.ProxyURL,
+      newProxyURL: val.global.ProxyURL,
+      tests: [
+        {
+          id: 0,
+          metadata: {
+            name: "Global",
+            endpoint: val.global.Endpoint,
+            method: val.global.Method
+          },
+          parameters: [
+            {
+              id: 0,
+              type: "Query",
+              key: "key",
+              value: "value"
+            }
+          ],
+          outputs: [
+            {
+              id: 1,
+              type: "Status Code",
+              key: "Status Code",
+              value: "200"
+            }
+          ]
+        },
+        {
+          id: 1,
+          metadata: {
+            name: "New Test",
+            endpoint: "",
+            method: ""
+          },
+          parameters: [
+            {
+              id: 1,
+              type: "Query",
+              key: "key",
+              value: "value"
+            }
+          ],
+          outputs: [
+            {
+              id: 1,
+              type: "Status Code",
+              key: "Status Code",
+              value: "200"
+            }
+          ]
+        }
+      ]
+
+    });
+    console.log(this.getMaxId(val.tests));
+  }
 
 
   getMaxId = function (array) {
@@ -98,6 +149,7 @@ class Tests extends Component {
     }
     return max;
   };
+
 
   handleAddTest = () => {
     const { tests } = this.state;
@@ -129,6 +181,7 @@ class Tests extends Component {
     this.setState({ tests: [...this.state.tests, newTest] });
   };
 
+
   handleAddParameter = testId => {
     const { tests } = this.state;
 
@@ -148,6 +201,7 @@ class Tests extends Component {
       })
     });
   };
+
 
   handleAddOutput = testId => {
     const { tests } = this.state;
@@ -169,6 +223,7 @@ class Tests extends Component {
     });
   };
 
+
   handleRemoveElement = (event, testId, elementId) => {
     if (event.target.name === "test") {
       this.setState({
@@ -187,6 +242,7 @@ class Tests extends Component {
       });
     }
   };
+
 
   handleInputChange = (event, testId, elementType, elementId) => {
     this.clearValidationError();
@@ -225,6 +281,7 @@ class Tests extends Component {
     }
   };
 
+
   handleChangeType = (event, testId, elementId, type) => {
     this.setState(
       this.state.tests.map(test => {
@@ -241,9 +298,11 @@ class Tests extends Component {
     );
   };
 
+
   validateInput = text => {
     return /^[a-zA-Z0-9\s]*$/.test(text);
   };
+
 
   setValidationError = message => {
     this.setState({
@@ -254,6 +313,7 @@ class Tests extends Component {
     });
   };
 
+
   clearValidationError = () => {
     this.setState({
       validationError: {
@@ -262,6 +322,7 @@ class Tests extends Component {
       }
     });
   };
+
 
   setPendingServerResponse = () => {
     this.setState({
@@ -274,6 +335,7 @@ class Tests extends Component {
     });
   };
 
+
   handleServerResponseChange = (code, message, error) => {
     this.setState({
       pending: false,
@@ -284,6 +346,7 @@ class Tests extends Component {
       }
     });
   };
+
 
   parseParameters = test => {
     let QueryParams = {};
@@ -315,6 +378,7 @@ class Tests extends Component {
     };
   };
 
+
   parseOutputs = test => {
     let ResponseCode = {};
     let ResponseHeader = {};
@@ -335,6 +399,253 @@ class Tests extends Component {
       ResponseBody
     };
   };
+
+
+  addJSONNewData = () => {
+
+
+    const data = {
+      "details": [
+        {
+          "id": 1,
+          "userID": "rpierz",
+          "timeStamp": "1577618416",
+          "global": {
+            "ProxyURL": "rcpierz-eval-test.apigee.net/bdd-security",
+            "Endpoint": "/verifyapikey",
+            "Method": "GET",
+            "Parameters": {
+              "QueryParams": {
+                "Keyforquery": "ValueforQuery",
+                "sdsdsad": "sadsdsda"
+              },
+              "Headers": {
+                "header": "rrrrtrt"
+              },
+              "FormParams": {
+                "dsad": "sdsdd"
+              },
+              "BasicAuth": {
+                "username": "dfdf",
+                "password": "dsfdf"
+              }
+            },
+            "ExpectedOutput": {
+              "ResponseCode": "500"
+            }
+          },
+          "tests": {
+            "Verify Valid API Key": {
+              "Endpoint": "",
+              "Method": "efewfef",
+              "Parameters": {
+                "QueryParams": {
+                  "apikey": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd",
+                  "ewfef": "55545454"
+                }
+              },
+              "ExpectedOutput": {
+                "ResponseCode": "200"
+              }
+            },
+            "Another Valid API Key": {
+              "Endpoint": "ewefef",
+              "Method": "efewfef",
+              "Parameters": {
+                "QueryParams": {
+                  "5545454": "54545454",
+                  "ewfef": "55545454"
+                }
+              },
+              "ExpectedOutput": {
+                "ResponseCode": "400"
+              }
+            }
+          }
+        },
+        {
+          "id": 2,
+          "userID": "rpierz22222",
+          "timeStamp": "1577618416",
+          "global": {
+            "ProxyURL": "rcpierz-eval-test.apigee.net/bdd-security22222",
+            "Endpoint": "/verifyapikey",
+            "Method": "GET",
+            "Parameters": {
+              "QueryParams": {
+                "Keyforquery": "ValueforQuery",
+                "sdsdsad": "sadsdsda"
+              },
+              "Headers": {
+                "header": "rrrrtrt"
+              },
+              "FormParams": {
+                "dsad": "sdsdd"
+              },
+              "BasicAuth": {
+                "username": "dfdf",
+                "password": "dsfdf"
+              }
+            },
+            "ExpectedOutput": {
+              "ResponseCode": "500"
+            }
+          },
+          "tests": {
+            "Verify Valid API Key2": {
+              "Endpoint": "",
+              "Method": "efewfef",
+              "Parameters": {
+                "QueryParams": {
+                  "apikey": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd",
+                  "ewfef": "55545454"
+                }
+              },
+              "ExpectedOutput": {
+                "ResponseCode": "200"
+              }
+            },
+            "Another Valid API Key2": {
+              "Endpoint": "",
+              "Method": "efewfef",
+              "Parameters": {
+                "QueryParams": {
+                  "apikey": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd",
+                  "ewfef": "55545454"
+                }
+              },
+              "ExpectedOutput": {
+                "ResponseCode": "200"
+              }
+            },
+            "One more Valid API Key2": {
+              "Endpoint": "ewefef",
+              "Method": "efewfef",
+              "Parameters": {
+                "QueryParams": {
+                  "5545454": "54545454",
+                  "ewfef": "55545454"
+                }
+              },
+              "ExpectedOutput": {
+                "ResponseCode": "400"
+              }
+            }
+          }
+        },
+        {
+          "id": 3,
+          "userID": "rpierz33333",
+          "timeStamp": "1577618416",
+          "global": {
+            "ProxyURL": "rcpierz-eval-test.apigee.net/bdd-security33333",
+            "Endpoint": "/verifyapikey",
+            "Method": "GET",
+            "Parameters": {
+              "QueryParams": {
+                "Keyforquery": "ValueforQuery",
+                "sdsdsad": "sadsdsda"
+              },
+              "Headers": {
+                "header": "rrrrtrt"
+              },
+              "FormParams": {
+                "dsad": "sdsdd"
+              },
+              "BasicAuth": {
+                "username": "dfdf",
+                "password": "dsfdf"
+              }
+            },
+            "ExpectedOutput": {
+              "ResponseCode": "500"
+            }
+          },
+          "tests": {
+            "Verify Valid API Key3": {
+              "Endpoint": "",
+              "Method": "efewfef",
+              "Parameters": {
+                "QueryParams": {
+                  "apikey": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd",
+                  "ewfef": "55545454"
+                }
+              },
+              "ExpectedOutput": {
+                "ResponseCode": "200"
+              }
+            },
+            "Another Valid API Key3": {
+              "Endpoint": "ewefef",
+              "Method": "efewfef",
+              "Parameters": {
+                "QueryParams": {
+                  "5545454": "54545454",
+                  "ewfef": "55545454"
+                }
+              },
+              "ExpectedOutput": {
+                "ResponseCode": "400"
+              }
+            }
+          }
+        }
+      ]
+    }
+
+    const newData = {
+      "id": 4,
+      "userID": "rpierz33333",
+      "timeStamp": "1577618416",
+      "global": {
+        "ProxyURL": "fgfdgfg",
+        "Endpoint": "",
+        "Method": ""
+      },
+      "tests": {
+        "fggfg": {
+          "Endpoint": "fgg",
+          "Method": "fgfgg",
+          "Parameters": {
+            "QueryParams": {
+              "key": "value"
+            }
+          },
+          "ExpectedOutput": {
+            "ResponseCode": "200"
+          }
+        }
+      }
+    }
+
+
+    const res = {
+      ...data,
+      details: [
+        ...data.details,
+
+        newData
+      ]
+
+    }
+
+
+    /* fs.writeFile("./object.json", JSON.stringify(res), (err) => {
+      if (err) {
+        console.error(err);
+        return;
+      };
+      console.log("File has been created");
+    }); */
+
+    console.log(res);
+  }
+
+
+
+
+
+
 
   handleSubmitRequest = () => {
     this.setPendingServerResponse();
@@ -379,7 +690,9 @@ class Tests extends Component {
           delete req.tests[tests[test].metadata.name].ExpectedOutput;
       }
     }
-    console.log(req);
+
+    this.addJSONNewData();
+
     axios
       .post(`${this.url}/generate?id=${this.state.UserID}`, req)
       .then(res => {
@@ -407,6 +720,7 @@ class Tests extends Component {
           );
       });
   };
+
 
   handleHttpGetRequest = endpoint => {
     this.setPendingServerResponse();
@@ -436,7 +750,9 @@ class Tests extends Component {
       });
   };
 
+
   render() {
+
     return (
       <div>
         <div>
@@ -517,7 +833,6 @@ class Tests extends Component {
 
               <TabPanel tabId="two">
 
-
                 <fieldset className="fieldsetStyle testPlaceHolder">
                   <legend> {" Tests "} </legend>
                   <TransitionGroup>
@@ -525,16 +840,27 @@ class Tests extends Component {
                       .filter(test => test.id !== 0)
                       .map(test => (
                         <CSSTransition timeout={500} classNames="test" key={test.id}>
-                          <Test
-                            key={test.id}
-                            test={test}
-                            itemTests={this.state.newTests}
-                            onRemoveElement={this.handleRemoveElement}
-                            onInputChange={this.handleInputChange}
-                            onAddParameterElement={this.handleAddParameter}
-                            onAddOutputElement={this.handleAddOutput}
-                            onChangeType={this.handleChangeType}
-                          />
+                          {
+                            /* loadedTests ? loadedTests.map((d) => */
+                            <Test
+                              key={test.id}
+                              test={test}
+                              itemTests={this.state.newTests}
+                              onRemoveElement={this.handleRemoveElement}
+                              onInputChange={this.handleInputChange}
+                              onAddParameterElement={this.handleAddParameter}
+                              onAddOutputElement={this.handleAddOutput}
+                              onChangeType={this.handleChangeType}
+                            />
+
+                            /* ) :
+
+                              <div>
+
+
+                              </div> */
+
+                          }
                         </CSSTransition>
                       ))}
                   </TransitionGroup>
@@ -551,7 +877,8 @@ class Tests extends Component {
               </TabPanel>
               <TabPanel tabId="three">
 
-                <ViewTests sendData={this.getData} />
+                <ViewTests sendData={
+                  this.getData} />
 
 
               </TabPanel>
