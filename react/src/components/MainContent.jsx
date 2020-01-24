@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import AddNewTest from "./addNewTest";
 import Sidebar from "./sidebar";
 import ViewTests from "./ViewTests";
 
@@ -38,8 +37,6 @@ class MainContent extends Component {
 					onSubmitRequest={this.handleSubmitRequest}
 				/>
 				<ViewTests />
-				<AddNewTest />
-
 			</div>
 		);
 	}

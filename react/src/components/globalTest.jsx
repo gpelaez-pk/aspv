@@ -18,6 +18,7 @@ class GlobalTest extends Component {
 
   render() {
     const { test } = this.props;
+    console.log(this.props.test);
 
     return (
       <div className="test">
@@ -28,7 +29,7 @@ class GlobalTest extends Component {
             placeholder="/url"
             autocomplete="off"
             targetAttribute="endpoint"
-            defaultValue={this.props.itemEndpoint}
+            defaultValue={this.props.test.metadata.newEndPoint}
             elementId={test.id}
             onChange={this.props.onInputChange}
             testId={test.id}
@@ -42,7 +43,7 @@ class GlobalTest extends Component {
             placeholder="GET"
             autocomplete="off"
             targetAttribute="method"
-            defaultValue={this.props.itemMethod}
+            defaultValue={this.props.test.metadata.newMethod}
             elementId={test.id}
             onChange={this.props.onInputChange}
             testId={test.id}

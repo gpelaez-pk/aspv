@@ -72,6 +72,14 @@ code {
   margin-left: 20px;
 }
 
+.tabStyles button a {
+  color: #000000;
+}
+
+.tabStyles button a:hover {
+  text-decoration: none;
+}
+
 .rwt__tablist:not([aria-orientation="vertical"]) .rwt__tab[aria-selected="true"]:after {
   border-bottom: 3px solid cadetblue;
 }
@@ -324,6 +332,7 @@ th {
 
 table td {
   border: 1px solid black;
+  height: 60px;
 }
 
 table tr:first-child td {
@@ -350,8 +359,20 @@ table tr:nth-child(even) {
   background-color: cadetblue !important;
 }
 
+.Collapsible table td {
+  height: 20px;
+}
+
+.Collapsible table .smallTableWidthKey {
+  width: 105px;
+}
+
 table tr th.min-action-required {
   min-width: 105px;
+}
+
+table tr th.min-proxyurl-required {
+  min-width: 255px;
 }
 
 table tr th.min-user-required {

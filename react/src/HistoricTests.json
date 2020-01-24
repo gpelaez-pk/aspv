@@ -1,0 +1,328 @@
+{
+  "details": [
+    {
+      "id": 1,
+      "userID": "rpierz",
+      "timeStamp": 1576806012222,
+      "global": {
+        "ProxyURL": "rcpierz-eval-test.apigee.net/bdd-security",
+        "Endpoint": "/verifyapikey",
+        "Method": "GET",
+        "Parameters": {
+          "QueryParams": {
+            "Keyforquery": "ValueforQuery",
+            "sdsdsad": "sadsdsda"
+          },
+          "Headers": {
+            "header": "rrrrtrt"
+          },
+          "FormParams": {
+            "dsad": "sdsdd"
+          },
+          "BasicAuth": {
+            "username": "dfdf",
+            "password": "dsfdf"
+          }
+        },
+        "ExpectedOutput": {
+          "ResponseCode": "500"
+        }
+      },
+      "tests": {
+        "Verify Valid API Key": {
+          "Endpoint": "",
+          "Method": "efewfef",
+          "Parameters": {
+            "QueryParams": {
+              "apikey": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd",
+              "ewfef": "55545454"
+            }
+          },
+          "ExpectedOutput": {
+            "ResponseCode": "200"
+          }
+        },
+        "Another Valid API Key": {
+          "Endpoint": "ewefef",
+          "Method": "efewfef",
+          "Parameters": {
+            "QueryParams": {
+              "5545454": "54545454",
+              "ewfef": "55545454"
+            }
+          },
+          "ExpectedOutput": {
+            "ResponseCode": "400"
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "userID": "rpierz22222",
+      "timeStamp": 1577806513222,
+      "global": {
+        "ProxyURL": "rcpierz-eval-test.apigee.net/bdd-security22222",
+        "Endpoint": "/verifyapikey",
+        "Method": "GET",
+        "Parameters": {
+          "QueryParams": {
+            "Keyforquery": "ValueforQuery",
+            "sdsdsad": "sadsdsda"
+          },
+          "Headers": {
+            "header": "rrrrtrt"
+          },
+          "FormParams": {
+            "dsad": "sdsdd"
+          },
+          "BasicAuth": {
+            "username": "dfdf",
+            "password": "dsfdf"
+          }
+        },
+        "ExpectedOutput": {
+          "ResponseCode": "500999"
+        }
+      },
+      "tests": {
+        "Verify Valid API Key2": {
+          "Endpoint": "",
+          "Method": "efewfef",
+          "Parameters": {
+            "QueryParams": {
+              "apikey": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd",
+              "ewfef": "55545454"
+            }
+          },
+          "ExpectedOutput": {
+            "ResponseCode": "200"
+          }
+        },
+        "Another Valid API Key2": {
+          "Endpoint": "",
+          "Method": "efewfef",
+          "Parameters": {
+            "QueryParams": {
+              "apikey": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd",
+              "ewfef": "55545454"
+            }
+          },
+          "ExpectedOutput": {
+            "ResponseCode": "200"
+          }
+        },
+        "One more Valid API Key2": {
+          "Endpoint": "ewefef",
+          "Method": "efewfef",
+          "Parameters": {
+            "QueryParams": {
+              "5545454": "54545454",
+              "ewfef": "55545454"
+            }
+          },
+          "ExpectedOutput": {
+            "ResponseCode": "400"
+          }
+        }
+      }
+    },
+    {
+      "id": 3,
+      "userID": "rpierz33333",
+      "timeStamp": 1578806915000,
+      "global": {
+        "ProxyURL": "rcpierz-eval-test.apigee.net/bdd-security33333",
+        "Endpoint": "/verifyapikey",
+        "Method": "GET",
+        "Parameters": {
+          "QueryParams": {
+            "Keyforquery": "ValueforQuery",
+            "sdsdsad": "sadsdsda"
+          },
+          "Headers": {
+            "header": "rrrrtrt"
+          },
+          "FormParams": {
+            "dsad": "sdsdd"
+          },
+          "BasicAuth": {
+            "username": "dfdf",
+            "password": "dsfdf"
+          }
+        },
+        "ExpectedOutput": {
+          "ResponseCode": "500888"
+        }
+      },
+      "tests": {
+        "Verify Valid API Key3": {
+          "Endpoint": "",
+          "Method": "efewfef",
+          "Parameters": {
+            "QueryParams": {
+              "apikey": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd",
+              "ewfef": "55545454"
+            }
+          },
+          "ExpectedOutput": {
+            "ResponseCode": "200"
+          }
+        },
+        "Another Valid API Key3": {
+          "Endpoint": "ewefef",
+          "Method": "efewfef",
+          "Parameters": {
+            "QueryParams": {
+              "5545454": "54545454",
+              "ewfef": "55545454"
+            }
+          },
+          "ExpectedOutput": {
+            "ResponseCode": "400"
+          }
+        }
+      }
+    },
+    {
+      "userID": "rpierz",
+      "timeStamp": 1579807015222,
+      "global": {
+        "ProxyURL": "rcpierz-eval-test.apigee.net/bdd-security",
+        "Endpoint": "germanrp@hotmail.com",
+        "Method": "dsdsa",
+        "Parameters": {
+          "QueryParams": {
+            "key": "value"
+          }
+        },
+        "ExpectedOutput": {
+          "ResponseCode": "200"
+        }
+      },
+      "tests": {
+        "Verify Valid API Key3": {
+          "Endpoint": "",
+          "Method": "efewfef",
+          "Parameters": {
+            "QueryParams": {
+              "apikey": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd",
+              "ewfef": "55545454"
+            }
+          },
+          "ExpectedOutput": {
+            "ResponseCode": "200"
+          }
+        },
+        "Another Valid API Key3": {
+          "Endpoint": "ewefef",
+          "Method": "efewfef",
+          "Parameters": {
+            "QueryParams": {
+              "5545454": "54545454",
+              "ewfef": "55545454"
+            }
+          },
+          "ExpectedOutput": {
+            "ResponseCode": "400"
+          }
+        }
+      },
+      "id": 4
+    },
+    {
+      "userID": "rpierz",
+      "timeStamp": 1579807497503,
+      "global": {
+        "ProxyURL": "rcpierz-eval-test.apigee.net/bdd-security",
+        "Endpoint": "germanrp@hotmail.com",
+        "Method": "fsdffdsffdsf",
+        "Parameters": {
+          "QueryParams": {
+            "key": "value"
+          }
+        },
+        "ExpectedOutput": {
+          "ResponseCode": "200"
+        }
+      },
+      "tests": {
+        "Verify Valid API Key3": {
+          "Endpoint": "",
+          "Method": "efewfef",
+          "Parameters": {
+            "QueryParams": {
+              "apikey": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd",
+              "ewfef": "55545454"
+            }
+          },
+          "ExpectedOutput": {
+            "ResponseCode": "200"
+          }
+        }
+      },
+      "id": 5
+    },
+    {
+      "userID": "jaideep",
+      "timeStamp": 1579812496485,
+      "global": {
+        "ProxyURL": "jaideep",
+        "Endpoint": "jaideep",
+        "Method": "jaideep",
+        "Parameters": {
+          "QueryParams": {
+            "jaideep": "jaideep"
+          }
+        }
+      },
+      "tests": {
+        "jaideep": {
+          "Endpoint": "",
+          "Method": "",
+          "Parameters": {
+            "QueryParams": {
+              "jaideep": "jaideep"
+            }
+          },
+          "ExpectedOutput": {
+            "ResponseCode": "200"
+          }
+        }
+      },
+      "id": 6
+    },
+    {
+      "userID": "rpierz",
+      "timeStamp": 1579831601642,
+      "global": {
+        "ProxyURL": "rcpierz-eval-test.apigee.net/bdd-security",
+        "Endpoint": "germanrp@hotmail.com",
+        "Method": "ffffff",
+        "Parameters": {
+          "QueryParams": {
+            "key": "value"
+          }
+        },
+        "ExpectedOutput": {
+          "ResponseCode": "200"
+        }
+      },
+      "tests": {
+        "New Test Yes": {
+          "Endpoint": "",
+          "Method": "",
+          "Parameters": {
+            "QueryParams": {
+              "key": "value"
+            }
+          },
+          "ExpectedOutput": {
+            "ResponseCode": "200"
+          }
+        }
+      },
+      "id": 7
+    }
+  ]
+}

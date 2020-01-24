@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import AppTitle from "./components/AppTitle"
 import AppFooter from "./components/AppFooter"
 import Tests from "./components/tests";
+import Api from "./components/Api";
+
 
 import SocialButton from './components/SocialButton'
 
@@ -33,9 +35,7 @@ class App extends Component {
     if (dataSession === 'granted') {
       return (
         <div>
-
-          <Tests />
-
+          <Tests api={Api} />
         </div>
       );
 

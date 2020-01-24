@@ -1,9 +1,13 @@
 import React, { Component } from "react";
+
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 import Test from "./test";
 import AddElementButton from "./addElementButton";
 import InputText from "./inputText";
 import Sidebar from "./sidebar";
-import ViewTests from "./ViewTests"
+import ViewTests from "./ViewTests";
+
 
 import axios from "axios";
 import GlobalTest from "./globalTest";
@@ -17,6 +21,7 @@ import 'react-web-tabs/dist/react-web-tabs.css';
 class Tests extends Component {
 
   url = "http://localhost:8000";
+  baseURL = "http://localhost:3001";
 
 
   constructor(props) {
@@ -25,7 +30,11 @@ class Tests extends Component {
 
     this.getData = this.getData.bind(this);
 
+    this.loadTests = this.loadTests.bind(this);
+
+
     this.state = {
+      allTestsList: [],
       pending: false,
       validationError: {
         exist: false,
@@ -46,7 +55,9 @@ class Tests extends Component {
           metadata: {
             name: "Global",
             endpoint: "",
-            method: ""
+            newEndPoint: "",
+            method: "",
+            newMethod: ""
           },
           parameters: [],
           outputs: []
@@ -79,20 +90,25 @@ class Tests extends Component {
     };
   }
 
+  loadTests() {
+    this.props.api.loadTests().then(resp => {
+      this.setState({ allTestsList: resp.data });
+    });
+  }
+
   getData(val) {
+    console.log(val);
 
     this.setState({
-      UserID: val.userID,
       newUserID: val.userID,
-      ProxyURL: val.global.ProxyURL,
       newProxyURL: val.global.ProxyURL,
       tests: [
         {
           id: 0,
           metadata: {
             name: "Global",
-            endpoint: val.global.Endpoint,
-            method: val.global.Method
+            newEndPoint: val.global.Endpoint,
+            newMethod: val.global.Method
           },
           parameters: [
             {
@@ -138,7 +154,6 @@ class Tests extends Component {
       ]
 
     });
-    console.log(this.getMaxId(val.tests));
   }
 
 
@@ -156,6 +171,7 @@ class Tests extends Component {
 
     const newTest = {
       id: this.getMaxId(tests) + 1,
+      userID: tests.userID,
       metadata: {
         name: "New Test",
         endpoint: "",
@@ -401,251 +417,6 @@ class Tests extends Component {
   };
 
 
-  addJSONNewData = () => {
-
-
-    const data = {
-      "details": [
-        {
-          "id": 1,
-          "userID": "rpierz",
-          "timeStamp": "1577618416",
-          "global": {
-            "ProxyURL": "rcpierz-eval-test.apigee.net/bdd-security",
-            "Endpoint": "/verifyapikey",
-            "Method": "GET",
-            "Parameters": {
-              "QueryParams": {
-                "Keyforquery": "ValueforQuery",
-                "sdsdsad": "sadsdsda"
-              },
-              "Headers": {
-                "header": "rrrrtrt"
-              },
-              "FormParams": {
-                "dsad": "sdsdd"
-              },
-              "BasicAuth": {
-                "username": "dfdf",
-                "password": "dsfdf"
-              }
-            },
-            "ExpectedOutput": {
-              "ResponseCode": "500"
-            }
-          },
-          "tests": {
-            "Verify Valid API Key": {
-              "Endpoint": "",
-              "Method": "efewfef",
-              "Parameters": {
-                "QueryParams": {
-                  "apikey": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd",
-                  "ewfef": "55545454"
-                }
-              },
-              "ExpectedOutput": {
-                "ResponseCode": "200"
-              }
-            },
-            "Another Valid API Key": {
-              "Endpoint": "ewefef",
-              "Method": "efewfef",
-              "Parameters": {
-                "QueryParams": {
-                  "5545454": "54545454",
-                  "ewfef": "55545454"
-                }
-              },
-              "ExpectedOutput": {
-                "ResponseCode": "400"
-              }
-            }
-          }
-        },
-        {
-          "id": 2,
-          "userID": "rpierz22222",
-          "timeStamp": "1577618416",
-          "global": {
-            "ProxyURL": "rcpierz-eval-test.apigee.net/bdd-security22222",
-            "Endpoint": "/verifyapikey",
-            "Method": "GET",
-            "Parameters": {
-              "QueryParams": {
-                "Keyforquery": "ValueforQuery",
-                "sdsdsad": "sadsdsda"
-              },
-              "Headers": {
-                "header": "rrrrtrt"
-              },
-              "FormParams": {
-                "dsad": "sdsdd"
-              },
-              "BasicAuth": {
-                "username": "dfdf",
-                "password": "dsfdf"
-              }
-            },
-            "ExpectedOutput": {
-              "ResponseCode": "500"
-            }
-          },
-          "tests": {
-            "Verify Valid API Key2": {
-              "Endpoint": "",
-              "Method": "efewfef",
-              "Parameters": {
-                "QueryParams": {
-                  "apikey": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd",
-                  "ewfef": "55545454"
-                }
-              },
-              "ExpectedOutput": {
-                "ResponseCode": "200"
-              }
-            },
-            "Another Valid API Key2": {
-              "Endpoint": "",
-              "Method": "efewfef",
-              "Parameters": {
-                "QueryParams": {
-                  "apikey": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd",
-                  "ewfef": "55545454"
-                }
-              },
-              "ExpectedOutput": {
-                "ResponseCode": "200"
-              }
-            },
-            "One more Valid API Key2": {
-              "Endpoint": "ewefef",
-              "Method": "efewfef",
-              "Parameters": {
-                "QueryParams": {
-                  "5545454": "54545454",
-                  "ewfef": "55545454"
-                }
-              },
-              "ExpectedOutput": {
-                "ResponseCode": "400"
-              }
-            }
-          }
-        },
-        {
-          "id": 3,
-          "userID": "rpierz33333",
-          "timeStamp": "1577618416",
-          "global": {
-            "ProxyURL": "rcpierz-eval-test.apigee.net/bdd-security33333",
-            "Endpoint": "/verifyapikey",
-            "Method": "GET",
-            "Parameters": {
-              "QueryParams": {
-                "Keyforquery": "ValueforQuery",
-                "sdsdsad": "sadsdsda"
-              },
-              "Headers": {
-                "header": "rrrrtrt"
-              },
-              "FormParams": {
-                "dsad": "sdsdd"
-              },
-              "BasicAuth": {
-                "username": "dfdf",
-                "password": "dsfdf"
-              }
-            },
-            "ExpectedOutput": {
-              "ResponseCode": "500"
-            }
-          },
-          "tests": {
-            "Verify Valid API Key3": {
-              "Endpoint": "",
-              "Method": "efewfef",
-              "Parameters": {
-                "QueryParams": {
-                  "apikey": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd",
-                  "ewfef": "55545454"
-                }
-              },
-              "ExpectedOutput": {
-                "ResponseCode": "200"
-              }
-            },
-            "Another Valid API Key3": {
-              "Endpoint": "ewefef",
-              "Method": "efewfef",
-              "Parameters": {
-                "QueryParams": {
-                  "5545454": "54545454",
-                  "ewfef": "55545454"
-                }
-              },
-              "ExpectedOutput": {
-                "ResponseCode": "400"
-              }
-            }
-          }
-        }
-      ]
-    }
-
-    const newData = {
-      "id": 4,
-      "userID": "rpierz33333",
-      "timeStamp": "1577618416",
-      "global": {
-        "ProxyURL": "fgfdgfg",
-        "Endpoint": "",
-        "Method": ""
-      },
-      "tests": {
-        "fggfg": {
-          "Endpoint": "fgg",
-          "Method": "fgfgg",
-          "Parameters": {
-            "QueryParams": {
-              "key": "value"
-            }
-          },
-          "ExpectedOutput": {
-            "ResponseCode": "200"
-          }
-        }
-      }
-    }
-
-
-    const res = {
-      ...data,
-      details: [
-        ...data.details,
-
-        newData
-      ]
-
-    }
-
-
-    /* fs.writeFile("./object.json", JSON.stringify(res), (err) => {
-      if (err) {
-        console.error(err);
-        return;
-      };
-      console.log("File has been created");
-    }); */
-
-    console.log(res);
-  }
-
-
-
-
-
-
 
   handleSubmitRequest = () => {
     this.setPendingServerResponse();
@@ -691,12 +462,11 @@ class Tests extends Component {
       }
     }
 
-    this.addJSONNewData();
-
     axios
       .post(`${this.url}/generate?id=${this.state.UserID}`, req)
       .then(res => {
         console.log(res);
+        this.joinResults(req, this.state.UserID);
         this.handleServerResponseChange(
           res.status,
           `Tests generated.\nUserID: ${res.data.id}`,
@@ -721,6 +491,20 @@ class Tests extends Component {
       });
   };
 
+
+  joinResults = (req, userID) => {
+
+    const newData = {
+      "userID": userID,
+      "timeStamp": Date.now()
+    }
+
+    const allTogether = { ...newData, ...req }
+
+    axios
+      .post(`${this.baseURL}/details`, allTogether);
+
+  }
 
   handleHttpGetRequest = endpoint => {
     this.setPendingServerResponse();
@@ -755,139 +539,148 @@ class Tests extends Component {
 
     return (
       <div>
-        <div>
-          <Sidebar
-            validationError={this.state.validationError}
-            pending={this.state.pending}
-            httpStatus={this.state.httpStatus}
-            onHttpGetRequest={this.handleHttpGetRequest}
-            onSubmitRequest={this.handleSubmitRequest}
-          />
-        </div>
-        <div className="main-content">
-          <div className="tabStyles">
-            <Tabs
-              defaultTab="one"
-            >
-              <TabList>
-                <Tab tabFor="one">General Data</Tab>
-                <Tab tabFor="two">Test Data</Tab>
-                <Tab tabFor="three">Historic of Data</Tab>
-              </TabList>
+        <Router>
+          <div>
+            <Sidebar
+              validationError={this.state.validationError}
+              pending={this.state.pending}
+              httpStatus={this.state.httpStatus}
+              onHttpGetRequest={this.handleHttpGetRequest}
+              onSubmitRequest={this.handleSubmitRequest}
+            />
+          </div>
+          <div className="main-content">
+            <div className="tabStyles">
+              <Tabs
+                defaultTab="one"
+              >
+                <TabList>
+                  <Tab tabFor="one">
+                    <Link to="">
+                      General Data
+                    </Link>
+                  </Tab>
+                  <Tab tabFor="two">
+                    <Link to="">
+                      Test Data
+                    </Link>
+                  </Tab>
+                  <Tab tabFor="three">
+                    <Link to="/tests">
+                      Historic Data
+                    </Link>
+                  </Tab>
+                </TabList>
 
 
-              <TabPanel tabId="one">
+                <TabPanel tabId="one">
 
-                <div className="dataInputStyle">
+                  <div className="dataInputStyle">
 
-                  <fieldset className="fieldsetStyle">
-                    <legend> {"ProxyURL "} </legend>
-                    <InputText
-                      type="text"
-                      autocomplete="off"
-                      targetElement="ProxyURL"
-                      targetAttribute="ProxyURL"
-                      defaultValue={this.state.newProxyURL}
-                      placeholder={this.state.ProxyURL}
-                      onChange={this.handleInputChange}
-                    />
-                  </fieldset>
+                    <fieldset className="fieldsetStyle">
+                      <legend> {"ProxyURL "} </legend>
+                      <InputText
+                        type="text"
+                        autocomplete="off"
+                        targetElement="ProxyURL"
+                        targetAttribute="ProxyURL"
+                        defaultValue={this.state.newProxyURL}
+                        placeholder={this.state.ProxyURL}
+                        onChange={this.handleInputChange}
+                      />
+                    </fieldset>
 
-                  <div className="recommendationText">
-                    <sub>* make ensure your proxies are protected</sub>
+                    <div className="recommendationText">
+                      <sub>* make ensure your proxies are protected</sub>
+                    </div>
+
+                    <fieldset className="fieldsetStyle">
+                      <legend> {" UserID "} </legend>
+                      <InputText
+                        type="text"
+                        autocomplete="off"
+                        className="input-text-UserID"
+                        targetElement="UserID"
+                        defaultValue={this.state.newUserID}
+                        placeholder={this.state.UserID}
+                        onChange={this.handleInputChange}
+                      />
+                    </fieldset>
+
+                    <hr />
+
+                    <fieldset className="fieldsetStyle bigPlaceHolder">
+                      <legend> {" Global Variables "} </legend>
+                      <GlobalTest
+                        key="0"
+                        test={this.state.tests.filter(test => test.id === 0)[0]}
+                        onRemoveElement={this.handleRemoveElement}
+                        onInputChange={this.handleInputChange}
+                        onAddParameterElement={this.handleAddParameter}
+                        onAddOutputElement={this.handleAddOutput}
+                        onChangeType={this.handleChangeType}
+                      />
+                    </fieldset>
                   </div>
 
-                  <fieldset className="fieldsetStyle">
-                    <legend> {" UserID "} </legend>
-                    <InputText
-                      type="text"
-                      autocomplete="off"
-                      className="input-text-UserID"
-                      targetElement="UserID"
-                      defaultValue={this.state.newUserID}
-                      placeholder={this.state.UserID}
-                      onChange={this.handleInputChange}
-                    />
+
+                </TabPanel>
+
+                <TabPanel tabId="two">
+
+                  <fieldset className="fieldsetStyle testPlaceHolder">
+                    <legend> {" Tests "} </legend>
+                    <TransitionGroup>
+                      {this.state.tests
+                        .filter(test => test.id !== 0)
+                        .map(test => (
+                          <CSSTransition timeout={500} classNames="test" key={test.id}>
+                            {
+                              <Test
+                                key={test.id}
+                                test={test}
+                                itemTests={this.state.newTests}
+                                onRemoveElement={this.handleRemoveElement}
+                                onInputChange={this.handleInputChange}
+                                onAddParameterElement={this.handleAddParameter}
+                                onAddOutputElement={this.handleAddOutput}
+                                onChangeType={this.handleChangeType}
+                              />
+                            }
+                          </CSSTransition>
+                        ))}
+                    </TransitionGroup>
                   </fieldset>
 
-                  <hr />
+                  <AddElementButton
+                    type="add-element-button-Test"
+                    onAddElement={this.handleAddTest}
+                    label="Test"
+                    testId={null}
+                  />
+                </TabPanel>
+                <TabPanel tabId="three">
 
-                  <fieldset className="fieldsetStyle bigPlaceHolder">
-                    <legend> {" Global Variables "} </legend>
-                    <GlobalTest
-                      key="0"
-                      itemEndpoint={this.state.newEndPoint}
-                      itemMethod={this.state.newMethod}
-                      test={this.state.tests.filter(test => test.id === 0)[0]}
-                      onRemoveElement={this.handleRemoveElement}
-                      onInputChange={this.handleInputChange}
-                      onAddParameterElement={this.handleAddParameter}
-                      onAddOutputElement={this.handleAddOutput}
-                      onChangeType={this.handleChangeType}
+                  <div className="container">
+                    <Route
+                      path="/tests"
+                      render={props => (
+                        <ViewTests
+                          {...props}
+                          sendData={this.getData}
+                          loadTests={this.loadTests}
+                          allTestsList={this.state.allTestsList}
+                        />
+                      )}
                     />
-                  </fieldset>
-                </div>
+                  </div>
 
+                </TabPanel>
+              </Tabs>
+            </div>
 
-              </TabPanel>
-
-              <TabPanel tabId="two">
-
-                <fieldset className="fieldsetStyle testPlaceHolder">
-                  <legend> {" Tests "} </legend>
-                  <TransitionGroup>
-                    {this.state.tests
-                      .filter(test => test.id !== 0)
-                      .map(test => (
-                        <CSSTransition timeout={500} classNames="test" key={test.id}>
-                          {
-                            /* loadedTests ? loadedTests.map((d) => */
-                            <Test
-                              key={test.id}
-                              test={test}
-                              itemTests={this.state.newTests}
-                              onRemoveElement={this.handleRemoveElement}
-                              onInputChange={this.handleInputChange}
-                              onAddParameterElement={this.handleAddParameter}
-                              onAddOutputElement={this.handleAddOutput}
-                              onChangeType={this.handleChangeType}
-                            />
-
-                            /* ) :
-
-                              <div>
-
-
-                              </div> */
-
-                          }
-                        </CSSTransition>
-                      ))}
-                  </TransitionGroup>
-                </fieldset>
-
-
-
-                <AddElementButton
-                  type="add-element-button-Test"
-                  onAddElement={this.handleAddTest}
-                  label="Test"
-                  testId={null}
-                />
-              </TabPanel>
-              <TabPanel tabId="three">
-
-                <ViewTests sendData={
-                  this.getData} />
-
-
-              </TabPanel>
-            </Tabs>
           </div>
-
-
-
-        </div>
+        </Router>
       </div>
     );
   }
