@@ -7,7 +7,6 @@ class ViewTests extends Component {
 		super(props);
 		this.state = {
 			isLoading: true,
-			loadedInfo: [],
 			text: "Load test"
 		};
 	}

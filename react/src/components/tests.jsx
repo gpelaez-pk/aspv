@@ -32,9 +32,23 @@ class Tests extends Component {
 
     this.loadTests = this.loadTests.bind(this);
 
-
     this.state = {
       allTestsList: [],
+      newTests: [
+        {
+          newUserID: "",
+          global: [
+            {
+              newProxyURL: "",
+              newEndPoint: "",
+              newMethod: "",
+              newParameters: [],
+              newExpectedOutput: []
+            }
+          ],
+          newTests1: []
+        }
+      ],
       pending: false,
       validationError: {
         exist: false,
@@ -46,20 +60,18 @@ class Tests extends Component {
         message: "Server Response"
       },
       UserID: "",
-      newUserID: "",
       ProxyURL: "(org)-(env).apigee.net/(basepath)",
-      newProxyURL: "",
       tests: [
         {
           id: 0,
           metadata: {
             name: "Global",
             endpoint: "",
-            newEndPoint: "",
-            method: "",
-            newMethod: ""
+            method: ""
           },
-          parameters: [],
+          parameters: [
+
+          ],
           outputs: []
         },
         {
@@ -92,69 +104,34 @@ class Tests extends Component {
 
   loadTests() {
     this.props.api.loadTests().then(resp => {
-      this.setState({ allTestsList: resp.data });
+      this.setState({
+        allTestsList: resp.data
+      });
     });
   }
 
-  getData(val) {
-    console.log(val);
-
+  getData = val => {
     this.setState({
-      newUserID: val.userID,
-      newProxyURL: val.global.ProxyURL,
-      tests: [
+      newTests: [
         {
-          id: 0,
-          metadata: {
-            name: "Global",
-            newEndPoint: val.global.Endpoint,
-            newMethod: val.global.Method
-          },
-          parameters: [
+          newUserID: val.userID,
+          global: [
             {
-              id: 0,
-              type: "Query",
-              key: "key",
-              value: "value"
+              newProxyURL: val.global.ProxyURL,
+              newEndPoint: val.global.Endpoint,
+              newMethod: val.global.Method,
+              newParameters: val.global.Parameters,
+              newExpectedOutput: val.global.ExpectedOutput
             }
           ],
-          outputs: [
-            {
-              id: 1,
-              type: "Status Code",
-              key: "Status Code",
-              value: "200"
-            }
-          ]
-        },
-        {
-          id: 1,
-          metadata: {
-            name: "New Test",
-            endpoint: "",
-            method: ""
-          },
-          parameters: [
-            {
-              id: 1,
-              type: "Query",
-              key: "key",
-              value: "value"
-            }
-          ],
-          outputs: [
-            {
-              id: 1,
-              type: "Status Code",
-              key: "Status Code",
-              value: "200"
-            }
+          newTests1: [
+            val.tests
           ]
         }
       ]
-
     });
-  }
+  };
+
 
 
   getMaxId = function (array) {
@@ -582,9 +559,9 @@ class Tests extends Component {
                       <InputText
                         type="text"
                         autocomplete="off"
+                        defaultValue={this.state.newTests[0].global[0].newProxyURL}
                         targetElement="ProxyURL"
                         targetAttribute="ProxyURL"
-                        defaultValue={this.state.newProxyURL}
                         placeholder={this.state.ProxyURL}
                         onChange={this.handleInputChange}
                       />
@@ -599,9 +576,9 @@ class Tests extends Component {
                       <InputText
                         type="text"
                         autocomplete="off"
+                        defaultValue={this.state.newTests[0].newUserID}
                         className="input-text-UserID"
                         targetElement="UserID"
-                        defaultValue={this.state.newUserID}
                         placeholder={this.state.UserID}
                         onChange={this.handleInputChange}
                       />
@@ -614,6 +591,7 @@ class Tests extends Component {
                       <GlobalTest
                         key="0"
                         test={this.state.tests.filter(test => test.id === 0)[0]}
+                        loadedTests={this.state.newTests[0]}
                         onRemoveElement={this.handleRemoveElement}
                         onInputChange={this.handleInputChange}
                         onAddParameterElement={this.handleAddParameter}
@@ -639,7 +617,7 @@ class Tests extends Component {
                               <Test
                                 key={test.id}
                                 test={test}
-                                itemTests={this.state.newTests}
+                                loadedTests={this.state.newTests[0]}
                                 onRemoveElement={this.handleRemoveElement}
                                 onInputChange={this.handleInputChange}
                                 onAddParameterElement={this.handleAddParameter}
@@ -683,6 +661,7 @@ class Tests extends Component {
         </Router>
       </div>
     );
+
   }
 }
 

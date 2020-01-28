@@ -5,16 +5,24 @@ import InputText from "../inputText";
 import "../../App.css";
 
 class Parameter extends Component {
+
+
+
   render() {
+
+
     const {
       param,
       testId,
       onInputChange,
       onChangeType,
-      onRemoveElement
+      onRemoveElement,
+      loadedParamTests
     } = this.props;
 
+
     return (
+
       <div className="test-element">
         <RemoveElementButton
           label=""
@@ -35,6 +43,7 @@ class Parameter extends Component {
           placeholder={param.type === "Body" ? "N/A" : param.key}
           disabled={param.type === "Body" ? "disabled" : undefined}
           onChange={onInputChange}
+          defaultValue={JSON.stringify(loadedParamTests)}
           elementId={param.id}
           targetAttribute="key"
           testId={testId}
