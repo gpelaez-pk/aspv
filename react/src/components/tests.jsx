@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Test from "./test";
 import AddElementButton from "./addElementButton";
@@ -533,19 +533,13 @@ class Tests extends Component {
               >
                 <TabList>
                   <Tab tabFor="one">
-                    <Link to="">
-                      General Data
-                    </Link>
+                    General Data
                   </Tab>
                   <Tab tabFor="two">
-                    <Link to="">
-                      Test Data
-                    </Link>
+                    Test Data
                   </Tab>
                   <Tab tabFor="three">
-                    <Link to="/tests">
-                      Historic Data
-                    </Link>
+                    Historic Data
                   </Tab>
                 </TabList>
 
@@ -641,7 +635,6 @@ class Tests extends Component {
 
                   <div className="container">
                     <Route
-                      path="/tests"
                       render={props => (
                         <ViewTests
                           {...props}

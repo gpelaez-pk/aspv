@@ -86,7 +86,7 @@ code {
 
 .dataInputStyle {
   padding-top: 30px;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 
 input {
@@ -123,7 +123,7 @@ fieldset {
 
 .testPlaceHolder {
   max-width: 65%;
-  margin-left: 30px;
+  margin-left: 20px;
   margin-top: 30px;
 }
 
@@ -281,7 +281,7 @@ legend {
 }
 
 .tableStyle {
-  padding: 10px;
+  padding: 30px 10px 10px 5px;
   width: 95%;
 }
 

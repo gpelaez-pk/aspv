@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-
+import Api from "./components/Api";
 import AppTitle from "./components/AppTitle"
 import AppFooter from "./components/AppFooter"
 import Tests from "./components/tests";
-import Api from "./components/Api";
-
-
 import SocialButton from './components/SocialButton'
 
 import {

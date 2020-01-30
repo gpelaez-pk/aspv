@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import InputText from "./inputText";
+
 import Collapsible from 'react-collapsible';
+
 
 class ViewTests extends Component {
 
@@ -7,12 +10,55 @@ class ViewTests extends Component {
 		super(props);
 		this.state = {
 			isLoading: true,
-			text: "Load test"
+			text: "Load test",
+			filteredList: [],
+			message: false
 		};
+		this.filterTestsByProxyURL = this.filterTestsByProxyURL.bind(this);
+		this.generateData = this.generateData.bind(this);
 	}
 
 	componentDidMount() {
 		this.props.loadTests();
+		setTimeout(() => {
+			this.setState({
+				filteredList: this.props.allTestsList
+			})
+		}, 80);
+	}
+
+	filterTestsByProxyURL(e) {
+
+		var updatedList = this.props.allTestsList;
+
+		updatedList = updatedList.filter((item => {
+
+			/* var allPropertyNames = Object.keys(item.tests);
+			for (var j = 0; j < allPropertyNames.length; j++) {
+				var name = allPropertyNames[j];
+				console.log(name);
+				return name.toLowerCase().search(
+					e.target.value.toLowerCase()) !== -1;
+			} */
+
+
+			return item.global.ProxyURL.toLowerCase().search(
+				e.target.value.toLowerCase()) !== -1;
+		}));
+
+		this.setState({
+			filteredList: updatedList,
+		});
+
+		if (updatedList.length === 0) {
+			this.setState({
+				message: true,
+			});
+		} else {
+			this.setState({
+				message: false,
+			});
+		}
 	}
 
 	saveDataMethod(test) {
@@ -54,6 +100,17 @@ class ViewTests extends Component {
 
 		return (
 			<div className="tableStyle">
+				<fieldset className="fieldsetStyle search-field">
+					<legend> {"Filter"} </legend>
+					<InputText
+						type="text"
+						autocomplete="off"
+						className="input-text-UserID"
+						placeholder="Search Text"
+						onChange={this.filterTestsByProxyURL}
+					/>
+				</fieldset>
+
 				<table>
 					<thead className="tableHeaderStyle">
 						<tr>
@@ -66,47 +123,51 @@ class ViewTests extends Component {
 					</thead>
 					<tbody>
 
-						{this.props.allTestsList.map((cat) => (
+						{this.state.message ? <tr><td colSpan="5">No search results.</td></tr> : ''}
 
-							<tr key={cat.id}>
-								<td>
-									{cat.global.ProxyURL}
-								</td>
-								<td className="alignCenter">
-									{cat.userID}
-								</td>
-								<td className="alignCenter">
-									{Intl.DateTimeFormat('en-US', {
-										year: "numeric",
-										month: "short",
-										day: "2-digit",
-										hour: "numeric",
-										minute: "2-digit",
-										second: "2-digit"
-									}).format(cat.timeStamp)}
-								</td>
-								<td className="alignCenter">
-									<Collapsible trigger="See all Details">
-										<table>
-											<tbody>
-												{this.generateData(cat)}
-											</tbody>
-										</table>
-									</Collapsible>
-								</td>
+						{this.state.filteredList.map((item) => {
+							return (
+								<tr key={item.id}>
+									<td>
+										{item.global.ProxyURL}
+									</td>
+									<td className="alignCenter">
+										{item.userID}
+									</td>
+									<td className="alignCenter">
+										{Intl.DateTimeFormat('en-US', {
+											year: "numeric",
+											month: "short",
+											day: "2-digit",
+											hour: "numeric",
+											minute: "2-digit",
+											second: "2-digit"
+										}).format(item.timeStamp)}
+									</td>
+									<td className="alignCenter">
+										<Collapsible trigger="See all Details">
+											<table>
+												<tbody>
+													{this.generateData(item)}
+													{this.state.message ? <li>No search results.</li> : ''}
+												</tbody>
+											</table>
+										</Collapsible>
+									</td>
 
-								<td className="alignCenter">
-									<button
-										className="btn btn-primary btn-sm add-element-button asvpButton"
-										onClick={() => {
-											this.saveDataMethod(cat);
-										}}
-									>
-										{this.state.text}
-									</button>
-								</td>
-							</tr>
-						))}
+									<td className="alignCenter">
+										<button
+											className="btn btn-primary btn-sm add-element-button asvpButton"
+											onClick={() => {
+												this.saveDataMethod(item);
+											}}
+										>
+											{this.state.text}
+										</button>
+									</td>
+								</tr>
+							);
+						})}
 					</tbody>
 				</table>
 			</div>

@@ -272,6 +272,11 @@
   min-width: 480px;
 }
 
+.search-field {
+  max-width: 454px;
+  margin-bottom: 18px;
+}
+
 /* RemoveElement component */
 .remove-element-button {
   border-radius: 15px !important;

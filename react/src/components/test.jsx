@@ -56,17 +56,13 @@ class Test extends Component {
   render() {
     const { test, loadedTests } = this.props;
 
-    console.log(loadedTests);
-
-
-
     if (loadedTests.newUserID !== "") {
 
-      const dataParameters = Array.from(loadedTests.newTests1[0]["Verify Valid API Key"].Parameters);
+      /* const dataParameters = Array.from(loadedTests.newTests1[0]["Verify Valid API Key"].Parameters);
       const dataExpectedOutput = Array.from(loadedTests.newTests1[0]["Verify Valid API Key"].ExpectedOutput);
 
       console.log(dataParameters);
-      console.log(dataExpectedOutput);
+      console.log(dataExpectedOutput); */
 
       return (
 
@@ -103,7 +99,7 @@ class Test extends Component {
                   <InputText
                     placeholder="/url"
                     autocomplete="off"
-                    defaultValue={loadedTests.newTests1[i]["Verify Valid API Key"].Endpoint}
+                    /* defaultValue={loadedTests.newTests1[i]["Verify Valid API Key"].Endpoint} */
                     targetAttribute="endpoint"
                     elementId={key.id}
                     onChange={this.props.onInputChange}
@@ -117,8 +113,8 @@ class Test extends Component {
                   <InputText
                     placeholder="GET"
                     autocomplete="off"
-                    defaultValue={loadedTests.newTests1[i]["Verify Valid API Key"].Method}
-                    targetAttribute="method"
+/*                     defaultValue={loadedTests.newTests1[i]["Verify Valid API Key"].Method}
+ */                    targetAttribute="method"
                     elementId={key.id}
                     onChange={this.props.onInputChange}
                     testId={key.id}
