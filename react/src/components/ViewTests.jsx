@@ -14,7 +14,9 @@ class ViewTests extends Component {
 			filteredList: [],
 			message: false
 		};
-		this.filterTestsByProxyURL = this.filterTestsByProxyURL.bind(this);
+		this.filterTestsByUserID = this.filterTestsByUserID.bind(this);
+		this.filterTestsByName = this.filterTestsByName.bind(this);
+
 		this.generateData = this.generateData.bind(this);
 	}
 
@@ -27,25 +29,40 @@ class ViewTests extends Component {
 		}, 80);
 	}
 
-	filterTestsByProxyURL(e) {
+	filterTestsByName(e) {
 
-		var updatedList = this.props.allTestsList;
+		this.updatedList = this.props.allTestsList;
 
-		updatedList = updatedList.filter((item => {
+		this.updatedList = this.updatedList.filter((item => {
 
-			/* var allPropertyNames = Object.keys(item.tests);
+
+			var allPropertyNames = Object.keys(item.tests);
 			for (var j = 0; j < allPropertyNames.length; j++) {
 				var name = allPropertyNames[j];
-				console.log(name);
-				return name.toLowerCase().search(
-					e.target.value.toLowerCase()) !== -1;
-			} */
+			}
 
+			return name.toLowerCase().search(
+				e.target.value.toLowerCase()) !== -1;
 
-			return item.global.ProxyURL.toLowerCase().search(
+		}));
+
+		this.configureData(this.updatedList);
+	}
+
+	filterTestsByUserID(e) {
+
+		this.updatedList1 = this.props.allTestsList;
+
+		this.updatedList1 = this.updatedList1.filter((item => {
+
+			return item.userID.toLowerCase().search(
 				e.target.value.toLowerCase()) !== -1;
 		}));
 
+		this.configureData(this.updatedList1);
+	}
+
+	configureData(updatedList) {
 		this.setState({
 			filteredList: updatedList,
 		});
@@ -66,17 +83,31 @@ class ViewTests extends Component {
 	}
 
 	generateData(data) {
+
+		console.log(data);
 		const generateElement = (key, value) => {
+			if (value !== "") {
+				return (
+					<tr key={key}>
+						<td className="smallTableWidthKey">{key}</td>
+						<td>{value}</td>
+					</tr>
+				);
+			}
+		}
+
+		const generateKeyheader = (key) => {
 			return (
 				<tr key={key}>
-					<td className="smallTableWidthKey">{key}</td>
-					<td>{value}</td>
+					<td colSpan="2" className="centeredTitle">&#60;&#60;&#60; {key} &gt;&gt;&gt;</td>
 				</tr>
 			);
 		}
 
 		const newData = Object.keys(data).reduce((result, currentKey) => {
+
 			if (typeof data[currentKey] === 'string' || data[currentKey] instanceof String) {
+
 				const elementToPush = generateElement(currentKey, data[currentKey]);
 
 				if ((currentKey !== 'timeStamp')) {
@@ -88,8 +119,14 @@ class ViewTests extends Component {
 				}
 
 			} else {
+
+				if ((currentKey !== "Parameters") && (currentKey !== "QueryParams") && (currentKey !== "ExpectedOutput")) {
+					const testName = generateKeyheader(currentKey);
+					result.push(testName);
+				}
+
 				const nested = this.generateData(data[currentKey]);
-				result.push(...nested);
+				result.push(nested);
 			}
 			return result;
 		}, []);
@@ -100,14 +137,24 @@ class ViewTests extends Component {
 
 		return (
 			<div className="tableStyle">
-				<fieldset className="fieldsetStyle search-field">
-					<legend> {"Filter"} </legend>
+				<fieldset className="fieldsetStyle search-field byUser">
+					<legend> {" Search by User ID"} </legend>
 					<InputText
 						type="text"
 						autocomplete="off"
 						className="input-text-UserID"
-						placeholder="Search Text"
-						onChange={this.filterTestsByProxyURL}
+						placeholder="Enter user..."
+						onChange={this.filterTestsByUserID}
+					/>
+				</fieldset>
+				<fieldset className="fieldsetStyle search-field byTestName">
+					<legend> {"Search by Test Name"} </legend>
+					<InputText
+						type="text"
+						autocomplete="off"
+						className="input-text-UserID"
+						placeholder="Enter test name..."
+						onChange={this.filterTestsByName}
 					/>
 				</fieldset>
 
@@ -148,8 +195,7 @@ class ViewTests extends Component {
 										<Collapsible trigger="See all Details">
 											<table>
 												<tbody>
-													{this.generateData(item)}
-													{this.state.message ? <li>No search results.</li> : ''}
+													{this.generateData(item.tests)}
 												</tbody>
 											</table>
 										</Collapsible>

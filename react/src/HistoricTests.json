@@ -231,39 +231,6 @@
       "id": 4
     },
     {
-      "userID": "rpierz",
-      "timeStamp": 1579807497503,
-      "global": {
-        "ProxyURL": "rcpierz-eval-test.apigee.net/bdd-security",
-        "Endpoint": "germanrp@hotmail.com",
-        "Method": "fsdffdsffdsf",
-        "Parameters": {
-          "QueryParams": {
-            "key": "value"
-          }
-        },
-        "ExpectedOutput": {
-          "ResponseCode": "200"
-        }
-      },
-      "tests": {
-        "Verify Valid API Key3": {
-          "Endpoint": "",
-          "Method": "efewfef",
-          "Parameters": {
-            "QueryParams": {
-              "apikey": "mKpuX2AuwakwQf9DNamcLqDiIhT4lIWd",
-              "ewfef": "55545454"
-            }
-          },
-          "ExpectedOutput": {
-            "ResponseCode": "200"
-          }
-        }
-      },
-      "id": 5
-    },
-    {
       "userID": "jaideep",
       "timeStamp": 1579812496485,
       "global": {
@@ -290,39 +257,7 @@
           }
         }
       },
-      "id": 6
-    },
-    {
-      "userID": "rpierz",
-      "timeStamp": 1579831601642,
-      "global": {
-        "ProxyURL": "rcpierz-eval-test.apigee.net/bdd-security",
-        "Endpoint": "germanrp@hotmail.com",
-        "Method": "ffffff",
-        "Parameters": {
-          "QueryParams": {
-            "key": "value"
-          }
-        },
-        "ExpectedOutput": {
-          "ResponseCode": "200"
-        }
-      },
-      "tests": {
-        "New Test Yes": {
-          "Endpoint": "",
-          "Method": "",
-          "Parameters": {
-            "QueryParams": {
-              "key": "value"
-            }
-          },
-          "ExpectedOutput": {
-            "ResponseCode": "200"
-          }
-        }
-      },
-      "id": 7
+      "id": 5
     }
   ]
 }
