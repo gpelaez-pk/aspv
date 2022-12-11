@@ -20,7 +20,7 @@
     "ajv": "^6.10.2"
   },
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "react-social-login-buttons": "^3.0.0"
   }
 }
